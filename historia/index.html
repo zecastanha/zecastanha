@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zé Castanha - A Saga</title>
+    <!-- Usa o mesmo CSS do projeto raiz -->
+    <link rel="stylesheet" href="../style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <canvas id="spaceCanvas"></canvas>
+
+    <div id="uiContainer">
+        <!-- O state-panel já aparece ativo na página de história -->
+        <div class="state-panel active" style="opacity: 1; visibility: visible;">
+            
+            <!-- Menu de Navegação -->
+            <nav class="premium-nav">
+                <a href="../index.html" class="nav-btn" style="text-decoration: none;">INÍCIO</a>
+                <span class="nav-separator">|</span>
+                <a href="index.html" class="nav-btn active" style="text-decoration: none;">HISTÓRIA</a>
+            </nav>
+
+            <h2 class="history-title">OS CAPÍTULOS ANTERIORES</h2>
+            
+            <div class="history-grid">
+                <!-- Edição: Las Vegas -->
+                <article class="history-card" onclick="openModal('modal-lasvegas')">
+                    <div class="card-banner" style="background-image: url('../assets/las%20vegas.png'); background-size: cover; background-position: center;"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-logo" style="background-image: url('../assets/ze%20las%20vegas%20logo%20png.png');"></div>
+                            <h3>ZÉ CASTANHA V — LAS VEGAS</h3>
+                        </div>
+                        <p class="card-lore">José Castanha passava mais uma tarde no bar quando decidiu gastar seus últimos trocados em uma raspadinha. Contra todas as probabilidades, o prêmio era uma viagem para Las Vegas...</p>
+                        <button class="read-more-btn">LER HISTÓRIA</button>
+                    </div>
+                </article>
+
+                <!-- Edição: Tokyo Drift -->
+                <article class="history-card" onclick="openModal('modal-tokyodrift')">
+                    <div class="card-banner" style="background-image: url('../assets/tokyo%20drift.png'); background-size: cover; background-position: center;"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-logo" style="background-image: url('../assets/ze%20las%20tokyo%20logo%20png.png');"></div>
+                            <h3>ZÉ CASTANHA VI — TOKYO DRIFT</h3>
+                        </div>
+                        <p class="card-lore">Depois de curtir Las Vegas como se não houvesse amanhã, José Castanha resolveu apostar alto demais e acabou jogando poker contra a Yakuza...</p>
+                        <button class="read-more-btn">LER HISTÓRIA</button>
+                    </div>
+                </article>
+
+                <!-- Edição: Sexta-Feira 13 -->
+                <article class="history-card" onclick="openModal('modal-sexta13')">
+                    <div class="card-banner" style="background-image: url('../assets/sexta%20feira.png'); background-size: cover; background-position: center;"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-logo" style="background-image: url('../assets/ze%20logo%20sexta%20feira%2013%20png.png');"></div>
+                            <h3>ZÉ CASTANHA VII — SEXTA-FEIRA 13</h3>
+                        </div>
+                        <p class="card-lore">Após escapar da confusão em Tokyo, José Castanha e os Dogs seguiram viagem sem rumo até chegarem à misteriosa Transilvânia...</p>
+                        <button class="read-more-btn">LER HISTÓRIA</button>
+                    </div>
+                </article>
+
+                <!-- Edição: Madagascar -->
+                <article class="history-card" onclick="openModal('modal-madagascar')">
+                    <div class="card-banner" style="background-image: url('../assets/madagascar.png'); background-size: cover; background-position: center;"></div>
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="card-logo" style="background-image: url('../assets/ze%20logo%20madagascar.png.png');"></div>
+                            <h3>ZÉ CASTANHA VIII — MADAGASCAR</h3>
+                        </div>
+                        <p class="card-lore">Depois de transformar um castelo assombrado da Transilvânia em festa, José Castanha resolveu descansar da única maneira que considerou confortável...</p>
+                        <button class="read-more-btn">LER HISTÓRIA</button>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAIS DE HISTÓRIA -->
+
+    <!-- Modal: Las Vegas -->
+    <div id="modal-lasvegas" class="story-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal('modal-lasvegas')">×</button>
+            <div class="modal-banner" style="background-image: url('../assets/las%20vegas.png'); background-size: cover; background-position: center;"></div>
+            <div class="modal-body">
+                <div class="card-header">
+                    <div class="card-logo" style="background-image: url('../assets/ze%20las%20vegas%20logo%20png.png');"></div>
+                    <h3>ZÉ CASTANHA V — LAS VEGAS</h3>
+                </div>
+                <div class="card-lore">
+                    <p>José Castanha passava mais uma tarde no bar quando decidiu gastar seus últimos trocados em uma raspadinha. Contra todas as probabilidades, o prêmio era uma viagem para Las Vegas. Ao lado dos Dogs, o velho embarcou rumo à cidade dos cassinos e rapidamente se encantou pelas luzes, pelas apostas e pela falsa sensação de que estava ficando rico. Entre uma jogatina e outra, acabou entrando em uma partida de poker maior do que deveria e se viu cercado por gente muito mais perigosa do que imaginava. Mesmo sem entender direito como chegou naquela situação, José saiu de Las Vegas levando uma nova dívida, vários problemas e a certeza de que sua aventura estava apenas começando.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Tokyo Drift -->
+    <div id="modal-tokyodrift" class="story-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal('modal-tokyodrift')">×</button>
+            <div class="modal-banner" style="background-image: url('../assets/tokyo%20drift.png'); background-size: cover; background-position: center;"></div>
+            <div class="modal-body">
+                <div class="card-header">
+                    <div class="card-logo" style="background-image: url('../assets/ze%20las%20tokyo%20logo%20png.png');"></div>
+                    <h3>ZÉ CASTANHA VI — TOKYO DRIFT</h3>
+                </div>
+                <div class="card-lore">
+                    <p>Depois de curtir Las Vegas como se não houvesse amanhã, José Castanha resolveu apostar alto demais e acabou jogando poker contra a Yakuza. Como era de se esperar, o velho perdeu, criou uma dívida absurda e foi sequestrado, deixando para os Dogs a missão de resgatá-lo. Seguindo um bilhete misterioso, eles foram parar em Tokyo, onde a única saída era vencer um desafio nas ruas. Foi assim que o Fusca roxo do Zé virou máquina de fuga, derrapando entre luzes neon, perseguições e confusão. No fim, o velho escapou do jeito que sabia: sem entender nada, segurando uma garrafa e transformando o perigo em festa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Sexta-Feira 13 -->
+    <div id="modal-sexta13" class="story-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal('modal-sexta13')">×</button>
+            <div class="modal-banner" style="background-image: url('../assets/sexta%20feira.png'); background-size: cover; background-position: center;"></div>
+            <div class="modal-body">
+                <div class="card-header">
+                    <div class="card-logo" style="background-image: url('../assets/ze%20logo%20sexta%20feira%2013%20png.png');"></div>
+                    <h3>ZÉ CASTANHA VII — SEXTA-FEIRA 13</h3>
+                </div>
+                <div class="card-lore">
+                    <p>Após escapar da confusão em Tokyo, José Castanha e os Dogs seguiram viagem sem rumo até chegarem à misteriosa Transilvânia. O que parecia apenas mais uma parada acabou levando o trio até um antigo castelo cercado por lendas, monstros e criaturas estranhas da noite. Enquanto qualquer pessoa normal teria ido embora imediatamente, José decidiu entrar para ver se tinha bebida. Entre vampiros, múmias, lobisomens e fantasmas, o velho acabou transformando o castelo em uma enorme pista de dança e se tornou a figura mais popular da festa. Quando a noite terminou, ninguém sabia explicar exatamente o que aconteceu, mas todos concordavam que aquela tinha sido a Sexta-Feira 13 mais animada da história.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Madagascar -->
+    <div id="modal-madagascar" class="story-modal hidden">
+        <div class="modal-content">
+            <button class="close-modal-btn" onclick="closeModal('modal-madagascar')">×</button>
+            <div class="modal-banner" style="background-image: url('../assets/madagascar.png'); background-size: cover; background-position: center;"></div>
+            <div class="modal-body">
+                <div class="card-header">
+                    <div class="card-logo" style="background-image: url('../assets/ze%20logo%20madagascar.png.png');"></div>
+                    <h3>ZÉ CASTANHA VIII — MADAGASCAR</h3>
+                </div>
+                <div class="card-lore">
+                    <p>Depois de transformar um castelo assombrado da Transilvânia em festa, José Castanha resolveu descansar da única maneira que considerou confortável naquele momento: dormindo dentro de um caixão. O problema é que o caixão foi confundido com carga e acabou embarcado em um navio cargueiro rumo a Madagascar. Quando os Dogs perceberam o desaparecimento do velho, partiram em uma corrida desesperada para encontrá-lo. Dias depois, José acordou sem a menor ideia de onde estava, cercado por praias tropicais, árvores gigantes e animais exóticos. Em vez de procurar o caminho de casa, fez o que sempre fazia: abriu uma bebida, fez novos amigos e transformou a ilha inteira em uma grande festa.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
