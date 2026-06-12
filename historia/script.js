@@ -96,7 +96,7 @@ animate();
 
 // --- LÓGICA DO MODAL ---
 
-function openModal(modalId) {
+function openModal(modalId, skipHistory = false) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('hidden');
@@ -107,12 +107,14 @@ function openModal(modalId) {
         document.body.style.overflow = 'hidden'; // Impede scroll do body
         
         // Atualiza a URL sem recarregar
-        const hashName = modalId.replace('modal-', '');
-        window.history.pushState(null, null, '#' + hashName);
+        if (!skipHistory) {
+            const hashName = modalId.replace('modal-', '');
+            window.history.pushState({ modalOpen: true }, null, '#' + hashName);
+        }
     }
 }
 
-function closeModal(modalId) {
+function closeModal(modalId, skipHistory = false) {
     const modal = document.getElementById(modalId);
     if (modal) {
         modal.classList.remove('active');
@@ -123,7 +125,11 @@ function closeModal(modalId) {
         document.body.style.overflow = '';
         
         // Limpa o hash
-        window.history.pushState(null, null, window.location.pathname);
+        if (!skipHistory) {
+            // Em vez de pushState, volta na história para remover o hash gerado pelo openModal
+            // Isso previne que apertar "voltar" muitas vezes fique preso na mesma página
+            window.history.back();
+        }
     }
 }
 
@@ -139,8 +145,18 @@ document.querySelectorAll('.story-modal').forEach(modal => {
 // Ao carregar a página, checar se tem hash
 window.addEventListener('DOMContentLoaded', () => {
     const hash = window.location.hash;
-    if (hash === '#lasvegas' || hash === '#las-vegas') openModal('modal-lasvegas');
-    if (hash === '#tokyodrift' || hash === '#tokyo-drift') openModal('modal-tokyodrift');
-    if (hash === '#sexta13' || hash === '#sexta-feira-13') openModal('modal-sexta13');
-    if (hash === '#madagascar') openModal('modal-madagascar');
+    if (hash === '#lasvegas' || hash === '#las-vegas') openModal('modal-lasvegas', true);
+    if (hash === '#tokyodrift' || hash === '#tokyo-drift') openModal('modal-tokyodrift', true);
+    if (hash === '#sexta13' || hash === '#sexta-feira-13') openModal('modal-sexta13', true);
+    if (hash === '#madagascar') openModal('modal-madagascar', true);
+});
+
+// Detectar quando o usuário aperta "Voltar" no celular ou no navegador
+window.addEventListener('popstate', () => {
+    // Fecha todos os modais sem alterar a história (porque a história já voltou)
+    document.querySelectorAll('.story-modal').forEach(modal => {
+        if (!modal.classList.contains('hidden')) {
+            closeModal(modal.id, true);
+        }
+    });
 });
