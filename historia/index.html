@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zé Castanha - A Saga</title>
+    <!-- Open Graph / WhatsApp Preview -->
+    <meta property="og:title" content="Zé Castanha - A Saga">
+    <meta property="og:description" content="Conheça a lenda e a história de todas as edições anteriores!">
+    <meta property="og:image" content="https://zecastanha.com/assets/FUNDO%201%20PNG%20deitada.png">
+    <meta property="og:url" content="https://zecastanha.com/historia">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Usa o mesmo CSS do projeto raiz -->
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -29,10 +36,10 @@
             <div class="history-grid">
                 <!-- Edição: Las Vegas -->
                 <article class="history-card" onclick="openModal('modal-lasvegas')">
-                    <div class="card-banner" style="background-image: url('../assets/las%20vegas.png'); background-size: cover; background-position: center;"></div>
+                    <img src="../assets/las%20vegas.png" class="card-banner" style="object-fit: cover;" loading="lazy" alt="Banner">
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="card-logo" style="background-image: url('../assets/ze%20las%20vegas%20logo%20png.png');"></div>
+                            <img src="../assets/ze%20las%20vegas%20logo%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                             <h3>ZÉ CASTANHA V — LAS VEGAS</h3>
                         </div>
                         <p class="card-lore">José Castanha passava mais uma tarde no bar quando decidiu gastar seus últimos trocados em uma raspadinha. Contra todas as probabilidades, o prêmio era uma viagem para Las Vegas...</p>
@@ -42,10 +49,10 @@
 
                 <!-- Edição: Tokyo Drift -->
                 <article class="history-card" onclick="openModal('modal-tokyodrift')">
-                    <div class="card-banner" style="background-image: url('../assets/tokyo%20drift.png'); background-size: cover; background-position: center;"></div>
+                    <img src="../assets/tokyo%20drift.png" class="card-banner" style="object-fit: cover;" loading="lazy" alt="Banner">
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="card-logo" style="background-image: url('../assets/ze%20las%20tokyo%20logo%20png.png');"></div>
+                            <img src="../assets/ze%20las%20tokyo%20logo%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                             <h3>ZÉ CASTANHA VI — TOKYO DRIFT</h3>
                         </div>
                         <p class="card-lore">Depois de curtir Las Vegas como se não houvesse amanhã, José Castanha resolveu apostar alto demais e acabou jogando poker contra a Yakuza...</p>
@@ -55,10 +62,10 @@
 
                 <!-- Edição: Sexta-Feira 13 -->
                 <article class="history-card" onclick="openModal('modal-sexta13')">
-                    <div class="card-banner" style="background-image: url('../assets/sexta%20feira.png'); background-size: cover; background-position: center;"></div>
+                    <img src="../assets/sexta%20feira.png" class="card-banner" style="object-fit: cover;" loading="lazy" alt="Banner">
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="card-logo" style="background-image: url('../assets/ze%20logo%20sexta%20feira%2013%20png.png');"></div>
+                            <img src="../assets/ze%20logo%20sexta%20feira%2013%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                             <h3>ZÉ CASTANHA VII — SEXTA-FEIRA 13</h3>
                         </div>
                         <p class="card-lore">Após escapar da confusão em Tokyo, José Castanha e os Dogs seguiram viagem sem rumo até chegarem à misteriosa Transilvânia...</p>
@@ -68,10 +75,10 @@
 
                 <!-- Edição: Madagascar -->
                 <article class="history-card" onclick="openModal('modal-madagascar')">
-                    <div class="card-banner" style="background-image: url('../assets/madagascar.png'); background-size: cover; background-position: center;"></div>
+                    <img src="../assets/madagascar.png" class="card-banner" style="object-fit: cover;" loading="lazy" alt="Banner">
                     <div class="card-content">
                         <div class="card-header">
-                            <div class="card-logo" style="background-image: url('../assets/ze%20logo%20madagascar.png.png');"></div>
+                            <img src="../assets/ze%20logo%20madagascar.png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                             <h3>ZÉ CASTANHA VIII — MADAGASCAR</h3>
                         </div>
                         <p class="card-lore">Depois de transformar um castelo assombrado da Transilvânia em festa, José Castanha resolveu descansar da única maneira que considerou confortável...</p>
@@ -88,10 +95,10 @@
     <div id="modal-lasvegas" class="story-modal hidden">
         <div class="modal-content">
             <button class="close-modal-btn" onclick="closeModal('modal-lasvegas')">×</button>
-            <div class="modal-banner" style="background-image: url('../assets/las%20vegas.png'); background-size: cover; background-position: center;"></div>
+            <img src="../assets/las%20vegas.png" class="modal-banner" style="object-fit: cover;" loading="lazy" alt="Modal Banner">
             <div class="modal-body">
                 <div class="card-header">
-                    <div class="card-logo" style="background-image: url('../assets/ze%20las%20vegas%20logo%20png.png');"></div>
+                    <img src="../assets/ze%20las%20vegas%20logo%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                     <h3>ZÉ CASTANHA V — LAS VEGAS</h3>
                 </div>
                 <div class="card-lore">
@@ -105,10 +112,10 @@
     <div id="modal-tokyodrift" class="story-modal hidden">
         <div class="modal-content">
             <button class="close-modal-btn" onclick="closeModal('modal-tokyodrift')">×</button>
-            <div class="modal-banner" style="background-image: url('../assets/tokyo%20drift.png'); background-size: cover; background-position: center;"></div>
+            <img src="../assets/tokyo%20drift.png" class="modal-banner" style="object-fit: cover;" loading="lazy" alt="Modal Banner">
             <div class="modal-body">
                 <div class="card-header">
-                    <div class="card-logo" style="background-image: url('../assets/ze%20las%20tokyo%20logo%20png.png');"></div>
+                    <img src="../assets/ze%20las%20tokyo%20logo%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                     <h3>ZÉ CASTANHA VI — TOKYO DRIFT</h3>
                 </div>
                 <div class="card-lore">
@@ -122,10 +129,10 @@
     <div id="modal-sexta13" class="story-modal hidden">
         <div class="modal-content">
             <button class="close-modal-btn" onclick="closeModal('modal-sexta13')">×</button>
-            <div class="modal-banner" style="background-image: url('../assets/sexta%20feira.png'); background-size: cover; background-position: center;"></div>
+            <img src="../assets/sexta%20feira.png" class="modal-banner" style="object-fit: cover;" loading="lazy" alt="Modal Banner">
             <div class="modal-body">
                 <div class="card-header">
-                    <div class="card-logo" style="background-image: url('../assets/ze%20logo%20sexta%20feira%2013%20png.png');"></div>
+                    <img src="../assets/ze%20logo%20sexta%20feira%2013%20png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                     <h3>ZÉ CASTANHA VII — SEXTA-FEIRA 13</h3>
                 </div>
                 <div class="card-lore">
@@ -139,10 +146,10 @@
     <div id="modal-madagascar" class="story-modal hidden">
         <div class="modal-content">
             <button class="close-modal-btn" onclick="closeModal('modal-madagascar')">×</button>
-            <div class="modal-banner" style="background-image: url('../assets/madagascar.png'); background-size: cover; background-position: center;"></div>
+            <img src="../assets/madagascar.png" class="modal-banner" style="object-fit: cover;" loading="lazy" alt="Modal Banner">
             <div class="modal-body">
                 <div class="card-header">
-                    <div class="card-logo" style="background-image: url('../assets/ze%20logo%20madagascar.png.png');"></div>
+                    <img src="../assets/ze%20logo%20madagascar.png.png" class="card-logo" style="object-fit: contain; background-color: #000;" loading="lazy" alt="Logo">
                     <h3>ZÉ CASTANHA VIII — MADAGASCAR</h3>
                 </div>
                 <div class="card-lore">
@@ -155,3 +162,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
