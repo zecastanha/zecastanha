@@ -134,62 +134,6 @@ animate();
 
 btnEmbarcar.addEventListener('click', () => {
     // Tocar Som de Hiperespaço
-    playHyperspaceSound();
-
-    // 1. Ocultar estado inicial
-    initialState.classList.remove('active');
-    initialState.classList.add('hidden');
-
-    // Fase 1: Zoom In leve (estrelas aceleram pouco a pouco, sem esticar)
-    let zoomInterval = setInterval(() => {
-        speed += 0.2;
-        if (speed > 8) clearInterval(zoomInterval);
-    }, 20);
-
-    // Fase 2: Esticar (Hiperespaço sem tremer)
-    setTimeout(() => {
-        clearInterval(zoomInterval);
-        isHyperspace = true; // Começa a desenhar linhas azuis
-        
-        let stretchInterval = setInterval(() => {
-            speed += 4;
-            if (speed > 120) clearInterval(stretchInterval);
-        }, 20);
-
-        // Fase 3: Tremer (Viagem no hiperespaço)
-        setTimeout(() => {
-            document.body.classList.add('shake-effect');
-
-            // Fase 4: Flash e Revelar
-            setTimeout(() => {
-                flashOverlay.classList.add('flash');
-                
-                // Desacelerar
-                let deceleration = setInterval(() => {
-                    speed -= 5;
-                    if (speed <= 1) {
-                        speed = 1;
-                        isHyperspace = false;
-                        clearInterval(deceleration);
-                    }
-                }, 20);
-
-                document.body.classList.remove('shake-effect');
-
-                finalState.classList.remove('hidden');
-                finalState.classList.add('active');
-
-                setTimeout(() => {
-                    flashOverlay.classList.remove('flash');
-                }, 300);
-
-            }, 1000); // Duração do tremor: 1s
-
-        }, 1000); // Duração do esticar sem tremer: 1s
-
-    }, 1000); // Duração do zoom inicial: 1s
-});
-
 // --- LOGICA DO EVENTO FINAL ---
 function triggerFinalEvent() {
     document.getElementById('finalLogo').src = 'assets/FUNDO%201%20PNG%20deitada.png';
@@ -202,22 +146,28 @@ function triggerFinalEvent() {
     if (countdownContainer) countdownContainer.style.display = 'none';
 }
 
-// --- LOGICA DE CONTAGEM REGRESSIVA ---
+// --- LOGICA DE CONTAGEM REGRESSIVA (PRÉ-VENDA) ---
 
-const targetDate = new Date('2026-06-21T18:00:00').getTime();
+// Data alvo: 07 de Julho de 2026 às 11:00h (Abertura no Grupo VIP)
+const targetDate = new Date('2026-07-07T11:00:00').getTime();
 
 const daysEl = document.getElementById('days');
 const hoursEl = document.getElementById('hours');
 const minutesEl = document.getElementById('minutes');
 const secondsEl = document.getElementById('seconds');
+const countdownLabel = document.querySelector('.countdown-label');
 
 function updateCountdown() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
     if (distance < 0) {
-        // Já passou da data, dispara o evento final
-        triggerFinalEvent();
+        // Já passou da data
+        if (countdownLabel) countdownLabel.innerText = "VENDAS ABERTAS!";
+        daysEl.innerText = "00";
+        hoursEl.innerText = "00";
+        minutesEl.innerText = "00";
+        secondsEl.innerText = "00";
         return;
     }
 

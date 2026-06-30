@@ -542,3 +542,83 @@ body, html {
         font-size: 0.9rem; /* Levemente menor para caber na tela do celular */
     }
 }
+
+/* --- PRÉ-VENDA --- */
+.presale-section {
+    margin-top: 20px;
+    padding: 30px 20px;
+    background: transparent;
+    border: none;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.star-wars-title {
+    color: #000;
+    -webkit-text-stroke: 1.5px #FFC107;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.8), 0 0 15px rgba(255, 193, 7, 0.4);
+    font-size: 2.8rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    font-family: var(--font-main);
+    line-height: 1.1;
+}
+
+.presale-text {
+    font-size: 1.1rem;
+    color: #fff;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.presale-text strong {
+    color: #FFC107;
+}
+
+.presale-highlight {
+    font-size: 1.2rem;
+    color: #FFC107;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.small-text {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+.whatsapp-btn {
+    display: inline-block;
+    background: #FFC107;
+    color: #000;
+    font-weight: 900;
+    font-size: 1.2rem;
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+}
+
+.whatsapp-btn:hover {
+    transform: scale(1.05);
+    background: #fff;
+    box-shadow: 0 0 25px rgba(255, 193, 7, 0.8);
+}
+
+.presale-warning {
+    font-size: 0.9rem;
+    color: #ff4444;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

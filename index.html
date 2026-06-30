@@ -32,20 +32,11 @@
     <!-- Canvas de fundo para as estrelas -->
     <canvas id="spaceCanvas"></canvas>
 
-    <!-- Overlay para os flashes visuais -->
-    <div id="flashOverlay" class="hidden"></div>
-
     <!-- Container do layout principal -->
     <div id="uiContainer">
-        
-        <!-- Estado Inicial -->
-        <div id="initialState" class="state-panel active">
-            <h2 class="star-wars-intro">Há muito tempo,<br>numa festa muito,<br>muito distante...</h2>
-            <button id="btnEmbarcar" class="primary-btn">EMBARCAR</button>
-        </div>
 
-        <!-- Estado Final (Revelação) -->
-        <div id="finalState" class="state-panel hidden">
+        <!-- Estado Principal (Pré-venda) -->
+        <div id="finalState" class="state-panel active">
             
             <!-- Menu de Navegação -->
             <nav class="premium-nav">
@@ -54,36 +45,46 @@
                 <a href="historia/index.html" class="nav-btn" style="text-decoration: none;">HISTÓRIA</a>
             </nav>
 
-            <img src="https://i.imgur.com/dD0K8es.png" alt="Zé Castanha Logo" class="main-logo" id="finalLogo" loading="lazy">
+            <img src="assets/FUNDO%201%20PNG%20deitada.png" alt="Zé Castanha Logo" class="main-logo" id="finalLogo" loading="lazy" style="margin-bottom: 0px; margin-top: -20px;">
             
-            <div class="save-the-date" id="saveDateContainer">
-                <h3 id="saveTitle" style="display: none; font-size: 1rem; font-weight: 400; letter-spacing: 5px; color: #aaa; margin-bottom: 10px;">SAVE THE DATE</h3>
-                <p class="date" id="finalDate">EM BREVE</p>
-            </div>
-
-            <div class="countdown-container">
-                <p class="countdown-label">Faltam:</p>
-                <div id="countdown">
-                    <div class="time-block">
-                        <span id="days" class="time-value">00</span>
-                        <span class="time-label">dias</span>
-                    </div>
-                    <div class="time-block">
-                        <span id="hours" class="time-value">00</span>
-                        <span class="time-label">horas</span>
-                    </div>
-                    <div class="time-block">
-                        <span id="minutes" class="time-value">00</span>
-                        <span class="time-label">min</span>
-                    </div>
-                    <div class="time-block">
-                        <span id="seconds" class="time-value">00</span>
-                        <span class="time-label">seg</span>
+            <!-- Pre-Sale Hero Section -->
+            <div class="presale-section hero-presale">
+                <h2 class="presale-title star-wars-title">INFORMAÇÕES<br>GERAIS</h2>
+                
+                <p class="presale-text" style="font-size: 1.2rem; font-weight: 700;">A PRÉ-VENDA ABRE DIA <strong style="color: #FFC107;">07 DE JULHO ÀS 12H.</strong></p>
+                <p class="presale-highlight" style="font-size: 1.1rem; text-shadow: 0 0 10px rgba(255,193,7,0.5);">SERÁ LIBERADA PRIMEIRO NOS GRUPOS DE WHATSAPP (11H).</p>
+                
+                <div class="countdown-container" style="margin-top: 10px; margin-bottom: 25px;">
+                    <p class="countdown-label" style="font-size: 0.9rem; color: #aaa; letter-spacing: 2px;">FALTAM:</p>
+                    <div id="countdown" style="margin-top: 5px;">
+                        <div class="time-block">
+                            <span id="days" class="time-value">00</span>
+                            <span class="time-label">dias</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="hours" class="time-value">00</span>
+                            <span class="time-label">horas</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="minutes" class="time-value">00</span>
+                            <span class="time-label">min</span>
+                        </div>
+                        <div class="time-block">
+                            <span id="seconds" class="time-value">00</span>
+                            <span class="time-label">seg</span>
+                        </div>
                     </div>
                 </div>
+                
+                <a href="https://chat.whatsapp.com/CagzphMoDScDKEaokJtZNB" target="_blank" class="whatsapp-btn" style="width: 100%; box-sizing: border-box;">
+                    LINK DO GRUPO NA BIO!
+                </a>
+                
+                <p class="presale-text small-text" style="margin-top: 20px;">As vendas serão realizadas pela plataforma <strong style="color: #fff;">BLACKTAG</strong>.</p>
+                <p class="presale-text small-text">Quem estiver nos grupos embarca primeiro, paga menos e garante seu lugar na maior aventura da história da Zé Castanha.</p>
+                
+                <p class="presale-warning">INGRESSOS MUITO LIMITADOS</p>
             </div>
-
-            <p class="closing-phrase" id="finalSubcopy">A saga do Zé continua.</p>
 
         </div>
     </div>
