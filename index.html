@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zé Castanha 9</title>
+    <title>Zé Castanha 9 — Nas Estrelas</title>
     <!-- Open Graph / WhatsApp Preview -->
-    <meta property="og:title" content="Zé Castanha 9">
-    <meta property="og:description" content="Em breve...">
+    <meta property="og:title" content="Zé Castanha 9 — Nas Estrelas">
+    <meta property="og:description" content="18 de Setembro. A maior aventura da história da Zé Castanha.">
     <meta property="og:image" content="https://zecastanha.com/assets/preview.png">
     <meta property="og:url" content="https://zecastanha.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <!-- Preload da logo para carregamento instantâneo -->
-    <link rel="preload" href="https://i.imgur.com/dD0K8es.png" as="image">
+    <!-- Fontes -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Preload da logo -->
+    <link rel="preload" href="assets/FUNDO%201%20PNG%20deitada.png" as="image">
     <link rel="stylesheet" href="style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -24,70 +25,145 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'G-5NX6RLXTT3');
     </script>
 </head>
 <body>
-    <!-- Canvas de fundo para as estrelas -->
+    <!-- Canvas de fundo fixo para as estrelas -->
     <canvas id="spaceCanvas"></canvas>
 
-    <!-- Container do layout principal -->
-    <div id="uiContainer">
+    <!-- ====== HERO ====== -->
+    <section class="hero-section">
+        <!-- Nav Desktop -->
+        <nav class="premium-nav nav-desktop">
+            <a href="index.html" class="nav-btn active" style="text-decoration: none;">INÍCIO</a>
+            <span class="nav-separator">|</span>
+            <a href="historia/index.html" class="nav-btn" style="text-decoration: none;">HISTÓRIA</a>
+        </nav>
 
-        <!-- Estado Principal (Pré-venda) -->
-        <div id="finalState" class="state-panel active">
-            
-            <!-- Menu de Navegação -->
-            <nav class="premium-nav">
-                <a href="index.html" class="nav-btn active" style="text-decoration: none;">INÍCIO</a>
-                <span class="nav-separator">|</span>
-                <a href="historia/index.html" class="nav-btn" style="text-decoration: none;">HISTÓRIA</a>
+        <!-- Hamburger (Mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-menu-nav">
+                <a href="index.html" class="mobile-menu-link active">INÍCIO</a>
+                <a href="historia/index.html" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="#caravanas" class="mobile-menu-link" onclick="closeMobileMenu()">CARAVANAS</a>
+                <a href="#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
             </nav>
-
-            <img src="assets/FUNDO%201%20PNG%20deitada.png" alt="Zé Castanha Logo" class="main-logo" id="finalLogo" loading="lazy" style="margin-bottom: 0px; margin-top: -20px;">
-            
-            <!-- Pre-Sale Hero Section -->
-            <div class="presale-section hero-presale">
-                <h2 class="presale-title star-wars-title">INFORMAÇÕES<br>GERAIS</h2>
-                
-                <p class="presale-text" style="font-size: 1.2rem; font-weight: 700;">A PRÉ-VENDA ABRE DIA <strong style="color: #FFC107;">07 DE JULHO ÀS 12H.</strong></p>
-                <p class="presale-highlight" style="font-size: 1.1rem; text-shadow: 0 0 10px rgba(255,193,7,0.5);">SERÁ LIBERADA PRIMEIRO NOS GRUPOS DE WHATSAPP (11H).</p>
-                
-                <div class="countdown-container" style="margin-top: 10px; margin-bottom: 25px;">
-                    <p class="countdown-label" style="font-size: 0.9rem; color: #aaa; letter-spacing: 2px;">FALTAM:</p>
-                    <div id="countdown" style="margin-top: 5px;">
-                        <div class="time-block">
-                            <span id="days" class="time-value">00</span>
-                            <span class="time-label">dias</span>
-                        </div>
-                        <div class="time-block">
-                            <span id="hours" class="time-value">00</span>
-                            <span class="time-label">horas</span>
-                        </div>
-                        <div class="time-block">
-                            <span id="minutes" class="time-value">00</span>
-                            <span class="time-label">min</span>
-                        </div>
-                        <div class="time-block">
-                            <span id="seconds" class="time-value">00</span>
-                            <span class="time-label">seg</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <a href="https://chat.whatsapp.com/CagzphMoDScDKEaokJtZNB" target="_blank" class="whatsapp-btn" style="width: 100%; box-sizing: border-box;">
-                    LINK DO GRUPO NA BIO!
-                </a>
-                
-                <p class="presale-text small-text" style="margin-top: 20px;">As vendas serão realizadas pela plataforma <strong style="color: #fff;">BLACKTAG</strong>.</p>
-                <p class="presale-text small-text">Quem estiver nos grupos embarca primeiro, paga menos e garante seu lugar na maior aventura da história da Zé Castanha.</p>
-                
-                <p class="presale-warning">INGRESSOS MUITO LIMITADOS</p>
-            </div>
-
         </div>
-    </div>
+
+        <!-- Logo Nas Estrelas -->
+        <img src="assets/FUNDO%201%20PNG%20deitada.png" alt="Zé Castanha Nas Estrelas" class="main-logo">
+
+        <!-- Save the Date -->
+        <div class="hero-date">
+            <p class="hero-date-label">SAVE THE DATE</p>
+            <p class="hero-date-value">18.09.2026</p>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="scroll-indicator">
+            <span>↓</span>
+        </div>
+    </section>
+
+    <!-- ====== SEÇÃO 1: CARAVANAS ====== -->
+    <section class="section-caravanas" id="caravanas">
+        <div class="section-inner section-layout">
+            <!-- Texto: Topo -->
+            <div class="section-text-top">
+                <p class="section-tag">// ROTA INTERESTELAR</p>
+                <h2 class="section-title">reúna sua<br>tripulação</h2>
+                <p class="section-subtitle">Vai trazer a galera para a Zé?</p>
+            </div>
+            <!-- Visual: Mapa -->
+            <div class="section-visual">
+                <div class="starmap-container">
+                    <div class="starmap-nebula"></div>
+                    <div class="starmap-grid"></div>
+                    <div class="starmap-center">
+                        <div class="starmap-center-pulse"></div>
+                        <div class="starmap-center-pulse pulse-2"></div>
+                        <span class="starmap-center-label">ZÉ CASTANHA</span>
+                    </div>
+                    <div class="starmap-planet planet-1"><span>SP</span></div>
+                    <div class="starmap-planet planet-2"><span>RIB</span></div>
+                    <div class="starmap-planet planet-3"><span>MAR</span></div>
+                    <div class="starmap-planet planet-4"><span>JAÚ</span></div>
+                    <div class="starmap-planet planet-5"><span>CAM</span></div>
+                    <div class="starmap-planet planet-6"><span>SC</span></div>
+                    <div class="starmap-dust dust-1"></div>
+                    <div class="starmap-dust dust-2"></div>
+                    <div class="starmap-dust dust-3"></div>
+                    <div class="starmap-dust dust-4"></div>
+                    <div class="starmap-dust dust-5"></div>
+                    <div class="starmap-dust dust-6"></div>
+                    <div class="starmap-dust dust-7"></div>
+                    <div class="starmap-dust dust-8"></div>
+                    <svg class="starmap-routes" viewBox="0 0 400 400" fill="none">
+                        <line x1="80" y1="60" x2="200" y2="200" class="route-line route-1"/>
+                        <line x1="330" y1="80" x2="200" y2="200" class="route-line route-2"/>
+                        <line x1="50" y1="250" x2="200" y2="200" class="route-line route-3"/>
+                        <line x1="340" y1="300" x2="200" y2="200" class="route-line route-4"/>
+                        <line x1="150" y1="350" x2="200" y2="200" class="route-line route-5"/>
+                        <line x1="320" y1="180" x2="200" y2="200" class="route-line route-6"/>
+                    </svg>
+                </div>
+            </div>
+            <!-- Texto: Baixo -->
+            <div class="section-text-bottom">
+                <p class="section-body">Cadastre sua caravana e garanta condições especiais para o seu grupo embarcar na maior aventura da galáxia.</p>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSevO3eFZ8BuqP5rvHi2KP-fSb5ORBJnpTXSrIoMIyMgh9Y9HA/viewform?usp=publish-editor" target="_blank" class="cta-btn cta-gold">
+                    <span>🚌</span> CADASTRAR CARAVANA
+                </a>
+                <p class="section-quote">"Todas as rotas levam à Zé."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ====== SEÇÃO 2: GRUPO VIP ====== -->
+    <section class="section-vip" id="vip">
+        <div class="section-inner section-layout layout-reverse">
+            <!-- Texto: Topo -->
+            <div class="section-text-top">
+                <p class="section-tag">// TRANSMISSÃO PRIORITÁRIA</p>
+                <h2 class="section-title">entre para a<br>tripulação</h2>
+                <p class="section-subtitle">O Grupo VIP é o canal oficial da Zé.</p>
+            </div>
+            <!-- Visual: Radar -->
+            <div class="section-visual">
+                <div class="radar-container">
+                    <div class="radar-ring ring-1"></div>
+                    <div class="radar-ring ring-2"></div>
+                    <div class="radar-ring ring-3"></div>
+                    <div class="radar-sweep"></div>
+                    <div class="radar-center"></div>
+                    <div class="radar-blip blip-1"></div>
+                    <div class="radar-blip blip-2"></div>
+                    <div class="radar-blip blip-3"></div>
+                    <div class="terminal-label">TRANSMISSÃO RECEBIDA</div>
+                </div>
+                <div class="hud-lines">
+                    <div class="hud-line"></div>
+                    <div class="hud-line"></div>
+                    <div class="hud-line"></div>
+                </div>
+            </div>
+            <!-- Texto: Baixo -->
+            <div class="section-text-bottom">
+                <p class="section-body">Receba novidades, bastidores, conteúdos exclusivos e avisos importantes antes de todo mundo.</p>
+                <a href="https://chat.whatsapp.com/FWmWR1xXIPKBMkq24ntiVa" target="_blank" class="cta-btn cta-gold">
+                    <span>🚀</span> ENTRAR NO GRUPO VIP
+                </a>
+            </div>
+        </div>
+    </section>
 
     <script src="script.js"></script>
 </body>

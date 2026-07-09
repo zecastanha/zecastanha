@@ -1,18 +1,15 @@
+// ============================
+// ZÉ CASTANHA NAS ESTRELAS
+// Script v2 — Seções Imersivas
+// ============================
+
 const canvas = document.getElementById('spaceCanvas');
 const ctx = canvas.getContext('2d');
-const btnEmbarcar = document.getElementById('btnEmbarcar');
-const initialState = document.getElementById('initialState');
-const finalState = document.getElementById('finalState');
-const flashOverlay = document.getElementById('flashOverlay');
 
-// Canvas dimensions
 let width, height;
-
-// Star properties
 let stars = [];
-const numStars = 800;
-let speed = 0.5; // Initial slow speed
-let isHyperspace = false;
+const numStars = 600;
+let speed = 0.3;
 let center = { x: 0, y: 0 };
 let targetX = 0;
 let targetY = 0;
@@ -29,30 +26,13 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
-// --- PARALLAX EFEITO ---
+// --- PARALLAX ---
 document.addEventListener('mousemove', (e) => {
-    if (!isHyperspace) {
-        // Movimento leve inverso (10% de offset)
-        const offsetX = (e.clientX - width / 2) * 0.1;
-        const offsetY = (e.clientY - height / 2) * 0.1;
-        targetX = (width / 2) + offsetX;
-        targetY = (height / 2) + offsetY;
-    } else {
-        // Trava no centro durante o hiperespaço
-        targetX = width / 2;
-        targetY = height / 2;
-    }
+    const offsetX = (e.clientX - width / 2) * 0.06;
+    const offsetY = (e.clientY - height / 2) * 0.06;
+    targetX = (width / 2) + offsetX;
+    targetY = (height / 2) + offsetY;
 });
-
-// --- AUDIO DESIGN ---
-const portalSound = new Audio('portal.MP3'); // Respeitando maiúsculas para Linux/Vercel
-
-function playHyperspaceSound() {
-    portalSound.currentTime = 0;
-    portalSound.play().catch(err => {
-        console.log("Para o som funcionar, coloque um arquivo chamado 'portal.mp3' na mesma pasta do site.");
-    });
-}
 
 class Star {
     constructor() {
@@ -68,11 +48,9 @@ class Star {
 
     update() {
         this.z -= speed;
-        
-        // Reset if star goes behind camera
         if (this.z < 1) {
             this.reset();
-            this.z = width; // Start from furthest distance
+            this.z = width;
             this.pz = this.z;
         }
     }
@@ -80,28 +58,15 @@ class Star {
     draw() {
         const sx = (this.x / this.z) * width + center.x;
         const sy = (this.y / this.z) * height + center.y;
-        
-        const px = (this.x / this.pz) * width + center.x;
-        const py = (this.y / this.pz) * height + center.y;
-
         this.pz = this.z;
 
-        // Size decreases as star is further away
-        const size = (1 - this.z / width) * 2.5;
+        const size = (1 - this.z / width) * 2;
+        const opacity = (1 - this.z / width);
 
-        // Draw star or line (if in hyperspace)
         ctx.beginPath();
-        if (isHyperspace && speed > 5) {
-            ctx.strokeStyle = '#00BFFF'; // Azul no estilo Star Wars
-            ctx.lineWidth = size;
-            ctx.moveTo(px, py);
-            ctx.lineTo(sx, sy);
-            ctx.stroke();
-        } else {
-            ctx.fillStyle = 'white';
-            ctx.arc(sx, sy, size, 0, Math.PI * 2);
-            ctx.fill();
-        }
+        ctx.fillStyle = `rgba(255, 255, 255, ${opacity * 0.8})`;
+        ctx.arc(sx, sy, size, 0, Math.PI * 2);
+        ctx.fill();
     }
 }
 
@@ -112,11 +77,10 @@ function initStars() {
 }
 
 function animate() {
-    // Interpolação suave do parallax
-    center.x += (targetX - center.x) * 0.05;
-    center.y += (targetY - center.y) * 0.05;
+    center.x += (targetX - center.x) * 0.03;
+    center.y += (targetY - center.y) * 0.03;
 
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)'; // Create trail effect for motion blur
+    ctx.fillStyle = 'rgba(3, 3, 5, 0.35)';
     ctx.fillRect(0, 0, width, height);
 
     stars.forEach(star => {
@@ -130,59 +94,23 @@ function animate() {
 initStars();
 animate();
 
-// --- LOGICA DE TRANSIÇÃO ---
+// --- HAMBURGER MENU ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
 
-btnEmbarcar.addEventListener('click', () => {
-    // Tocar Som de Hiperespaço
-// --- LOGICA DO EVENTO FINAL ---
-function triggerFinalEvent() {
-    document.getElementById('finalLogo').src = 'assets/FUNDO%201%20PNG%20deitada.png';
-    document.getElementById('saveTitle').style.display = 'block';
-    document.getElementById('finalDate').innerText = '18.09.2026';
-    document.getElementById('finalSubcopy').innerText = 'O plano era voltar pra Bauru. Deu tudo errado.';
-    
-    // Esconde o relógio
-    const countdownContainer = document.querySelector('.countdown-container');
-    if (countdownContainer) countdownContainer.style.display = 'none';
+if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        // Trava/destrava scroll do body
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
 }
 
-// --- LOGICA DE CONTAGEM REGRESSIVA (PRÉ-VENDA) ---
-
-// Data alvo: 07 de Julho de 2026 às 11:00h (Abertura no Grupo VIP)
-const targetDate = new Date('2026-07-07T11:00:00').getTime();
-
-const daysEl = document.getElementById('days');
-const hoursEl = document.getElementById('hours');
-const minutesEl = document.getElementById('minutes');
-const secondsEl = document.getElementById('seconds');
-const countdownLabel = document.querySelector('.countdown-label');
-
-function updateCountdown() {
-    const now = new Date().getTime();
-    const distance = targetDate - now;
-
-    if (distance < 0) {
-        // Já passou da data
-        if (countdownLabel) countdownLabel.innerText = "VENDAS ABERTAS!";
-        daysEl.innerText = "00";
-        hoursEl.innerText = "00";
-        minutesEl.innerText = "00";
-        secondsEl.innerText = "00";
-        return;
+function closeMobileMenu() {
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
     }
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    daysEl.innerText = days.toString().padStart(2, '0');
-    hoursEl.innerText = hours.toString().padStart(2, '0');
-    minutesEl.innerText = minutes.toString().padStart(2, '0');
-    secondsEl.innerText = seconds.toString().padStart(2, '0');
 }
-
-setInterval(updateCountdown, 1000);
-updateCountdown(); // Chamada inicial para evitar delay de 1 seg
-
-// Sem navegação por abas aqui, será via links multi-page.

@@ -1,8 +1,29 @@
+/* ============================
+   ZÉ CASTANHA NAS ESTRELAS
+   Design System v2 — Seções Imersivas
+   ============================ */
+
+/* --- FONT FACE: Star Jedi --- */
+@font-face {
+    font-family: 'Star Jedi';
+    src: url('https://cdn.jsdelivr.net/gh/caiobep/star-jedi-font/StarJedi-DGRW.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 :root {
     --bg-color: #030305;
     --text-color: #ffffff;
-    --accent-color: #e0e0e0;
-    --font-main: 'Montserrat', sans-serif;
+    --gold: #FFC107;
+    --gold-glow: rgba(255, 193, 7, 0.4);
+    --gold-soft: #FFD54F;
+    --blue: #4bd5ee;
+    --blue-glow: rgba(75, 213, 238, 0.3);
+    --red-alert: #ff4444;
+    --font-main: 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+    --font-star: 'Star Jedi', sans-serif;
 }
 
 * {
@@ -11,100 +32,794 @@
     box-sizing: border-box;
 }
 
-body, html {
-    width: 100%;
-    height: 100%;
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     background-color: var(--bg-color);
     color: var(--text-color);
     font-family: var(--font-main);
-    overflow: hidden; /* Evita scroll durante o shake */
-    position: relative;
+    overflow-x: hidden;
 }
 
-/* --- CANVAS & EFEITOS DE FUNDO --- */
+/* --- CANVAS FUNDO FIXO --- */
 #spaceCanvas {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 0;
 }
 
-#flashOverlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    opacity: 0;
-    z-index: 5;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
-}
-
-#flashOverlay.flash {
-    opacity: 1;
-}
-
-/* --- ANIMAÇÃO DE SHAKE --- */
-.shake-effect {
-    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-}
-
-@keyframes shake {
-    10%, 90% { transform: translate3d(-1px, 0, 0); }
-    20%, 80% { transform: translate3d(2px, 0, 0); }
-    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
-    40%, 60% { transform: translate3d(4px, 0, 0); }
-}
-
-/* --- CONTAINER DA INTERFACE --- */
-#uiContainer {
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero-section {
     position: relative;
     z-index: 10;
-    width: 100%;
-    height: 100%;
+    min-height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 30px 20px;
 }
 
-.state-panel {
+/* --- NAVEGAÇÃO --- */
+.premium-nav {
     position: absolute;
-    width: 90%;
-    max-width: 1000px;
-    max-height: 90vh;
-    overflow-y: auto;
+    top: 25px;
+    left: 0;
+    right: 0;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    padding-bottom: 12px;
+    z-index: 20;
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    cursor: pointer;
+    font-family: var(--font-main);
+    transition: color 0.3s, text-shadow 0.3s;
+    opacity: 0.45;
+    text-transform: uppercase;
+}
+
+.nav-btn.active, .nav-btn:hover {
+    color: var(--gold);
+    opacity: 1;
+    text-shadow: 0 0 12px var(--gold-glow);
+}
+
+.nav-separator {
+    color: rgba(255, 193, 7, 0.2);
+    font-size: 1rem;
+    font-weight: 300;
+    user-select: none;
+}
+
+/* --- HAMBURGER BUTTON --- */
+.hamburger {
+    display: none; /* Escondido no desktop */
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 8px;
+    padding: 10px 9px;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    backdrop-filter: blur(8px);
+}
+
+.hamburger-line {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--gold);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+}
+
+/* Animação X quando aberto */
+.hamburger.open .hamburger-line:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open .hamburger-line:nth-child(2) {
+    opacity: 0;
+}
+.hamburger.open .hamburger-line:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* --- MOBILE MENU OVERLAY --- */
+.mobile-menu {
+    display: none; /* Escondido no desktop */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(3, 3, 5, 0.95);
+    backdrop-filter: blur(15px);
+    z-index: 999;
+    justify-content: center;
+    align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 1.5s ease, visibility 1.5s;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.mobile-menu.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-menu-nav {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 30px;
 }
 
-/* Esconde scrollbar nativo */
-.state-panel::-webkit-scrollbar {
-    width: 0px;
+.mobile-menu-link {
+    font-family: var(--font-main);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 5px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: color 0.3s, text-shadow 0.3s, transform 0.3s;
+    padding: 8px 0;
 }
 
-.state-panel.active {
-    opacity: 1;
-    visibility: visible;
+.mobile-menu-link:hover,
+.mobile-menu-link.active {
+    color: var(--gold);
+    text-shadow: 0 0 15px var(--gold-glow);
+    transform: scale(1.05);
 }
 
-/* Oculta de vez elementos para evitar interação indesejada */
-.state-panel.hidden {
-    opacity: 0;
-    visibility: hidden;
+/* --- LOGO --- */
+.main-logo {
+    max-width: 85%;
+    width: 500px;
+    filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.2));
+    animation: floatLogo 4s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+/* --- HERO DATE --- */
+.hero-date {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    margin-top: 15px;
+}
+
+.hero-date-label {
+    font-size: 0.6rem;
+    letter-spacing: 6px;
+    color: rgba(255,255,255,0.3);
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.hero-date-value {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: var(--gold);
+    text-shadow: 0 0 20px var(--gold-glow);
+}
+
+/* --- SCROLL INDICATOR --- */
+.scroll-indicator {
+    position: absolute;
+    bottom: 30px;
+    animation: bounceDown 2s ease-in-out infinite;
+}
+
+.scroll-indicator span {
+    font-size: 1.4rem;
+    color: rgba(255,255,255,0.25);
+}
+
+@keyframes bounceDown {
+    0%, 100% { transform: translateY(0); opacity: 0.3; }
+    50% { transform: translateY(8px); opacity: 0.7; }
+}
+
+/* ============================
+   SEÇÕES IMERSIVAS (Shared)
+   ============================ */
+.section-vip,
+.section-caravanas {
+    position: relative;
+    z-index: 10;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 30px;
+}
+
+.section-vip {
+    border-top: 1px solid rgba(255, 193, 7, 0.08);
+}
+
+.section-caravanas {
+    border-top: 1px solid rgba(75, 213, 238, 0.08);
+}
+
+.section-inner {
+    max-width: 1100px;
+    width: 100%;
+}
+
+/* --- LAYOUT DAS SEÇÕES (Desktop: 2 colunas / Mobile: linear) --- */
+.section-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+        "text-top visual"
+        "text-bottom visual";
+    gap: 20px 60px;
+    align-items: center;
+}
+
+.section-layout.layout-reverse {
+    grid-template-areas:
+        "visual text-top"
+        "visual text-bottom";
+}
+
+.section-text-top {
+    grid-area: text-top;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-self: end;
+}
+
+.section-text-bottom {
+    grid-area: text-bottom;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-self: start;
+}
+
+.section-visual {
+    grid-area: visual;
+}
+
+.section-tag {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--gold);
+    opacity: 0.6;
+    text-transform: uppercase;
+}
+
+.section-title {
+    font-family: var(--font-star);
+    font-size: 2.4rem;
+    color: var(--gold);
+    line-height: 1.15;
+    text-shadow: 0 0 25px var(--gold-glow), 0 0 50px rgba(255, 193, 7, 0.15);
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.4;
+}
+
+.section-body {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.7;
+    max-width: 420px;
+}
+
+.section-quote {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--blue);
+    margin-top: 8px;
+    text-shadow: 0 0 10px var(--blue-glow);
+    letter-spacing: 1px;
+}
+
+/* --- CTA BUTTONS --- */
+.cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    width: fit-content;
+    margin-top: 6px;
+}
+
+.cta-gold {
+    background: var(--gold);
+    color: #000;
+    box-shadow: 0 0 20px var(--gold-glow), 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.cta-gold::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.12) 50%, transparent 70%);
+    animation: btnShine 3s ease-in-out infinite;
+}
+
+@keyframes btnShine {
+    0% { transform: translateX(-100%) rotate(45deg); }
+    100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.cta-btn:hover {
+    transform: scale(1.04);
+    box-shadow: 0 0 35px var(--gold-glow), 0 6px 20px rgba(0,0,0,0.4);
+}
+
+/* ============================
+   RADAR (Seção VIP)
+   ============================ */
+.radar-container {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto;
+}
+
+.radar-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 193, 7, 0.12);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring-1 { width: 100%; height: 100%; }
+.ring-2 { width: 66%; height: 66%; }
+.ring-3 { width: 33%; height: 33%; }
+
+.radar-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 12px var(--gold);
+}
+
+.radar-sweep {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    transform-origin: left center;
+    animation: radarSweep 4s linear infinite;
+    opacity: 0.6;
+}
+
+@keyframes radarSweep {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.radar-blip {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: blipPulse 2s ease-in-out infinite;
+}
+
+.blip-1 { top: 25%; left: 60%; animation-delay: 0s; }
+.blip-2 { top: 55%; left: 75%; animation-delay: 0.7s; }
+.blip-3 { top: 35%; left: 30%; animation-delay: 1.4s; }
+
+@keyframes blipPulse {
+    0%, 100% { opacity: 0.2; box-shadow: 0 0 4px var(--gold); transform: scale(1); }
+    50% { opacity: 1; box-shadow: 0 0 12px var(--gold); transform: scale(1.5); }
+}
+
+/* Terminal label */
+.terminal-label {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    opacity: 0.5;
+    animation: terminalBlink 1.5s step-end infinite;
+    white-space: nowrap;
+}
+
+@keyframes terminalBlink {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0; }
+}
+
+/* HUD Lines */
+.hud-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hud-line {
+    height: 1px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,193,7,0.06) 30%, rgba(255,193,7,0.06) 70%, transparent 100%);
+}
+
+.section-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 350px;
+}
+
+/* ============================
+   STARMAP (Seção Caravanas)
+   ============================ */
+.starmap-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+    margin: 0 auto;
+}
+
+.starmap-routes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.route-line {
+    stroke: var(--blue);
+    stroke-width: 1;
+    stroke-dasharray: 6, 8;
+    opacity: 0.3;
+    animation: routeDash 2s linear infinite;
+}
+
+.route-1 { animation-delay: 0s; }
+.route-2 { animation-delay: 0.3s; }
+.route-3 { animation-delay: 0.6s; }
+.route-4 { animation-delay: 0.9s; }
+.route-5 { animation-delay: 1.2s; }
+.route-6 { animation-delay: 1.5s; }
+
+@keyframes routeDash {
+    0% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -28; }
+}
+
+/* Centro do mapa (Bauru) */
+.starmap-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.starmap-center::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--gold), 0 0 30px var(--gold-glow);
+}
+
+.starmap-center-pulse {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    animation: centerPulse 2s ease-out infinite;
+}
+
+@keyframes centerPulse {
+    0% { transform: scale(0.5); opacity: 0.6; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.starmap-center-label {
+    position: absolute;
+    top: 22px;
+    font-family: var(--font-mono);
+    font-size: 0.55rem;
+    letter-spacing: 3px;
+    color: var(--gold);
+    white-space: nowrap;
+}
+
+/* Planetas/Cidades */
+.starmap-planet {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: var(--blue);
+    border-radius: 50%;
+    box-shadow: 0 0 6px var(--blue);
+    z-index: 3;
+}
+
+.starmap-planet span {
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.5rem;
+    color: var(--blue);
+    letter-spacing: 1px;
+    white-space: nowrap;
+    opacity: 0.7;
+}
+
+.planet-1 { top: 12%; left: 18%; }
+.planet-2 { top: 18%; left: 80%; }
+.planet-3 { top: 60%; left: 10%; }
+.planet-4 { top: 73%; left: 72%; }
+.planet-5 { top: 85%; left: 35%; }
+.planet-6 { top: 43%; left: 78%; }
+
+/* Nebula glow (fundo galáctico) */
+.starmap-nebula {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(75, 213, 238, 0.06) 0%,
+        rgba(255, 193, 7, 0.03) 40%,
+        transparent 70%
+    );
+    filter: blur(20px);
     pointer-events: none;
 }
 
-/* --- ESTADO INICIAL --- */
+/* Grid galáctica */
+.starmap-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(75, 213, 238, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(75, 213, 238, 0.04) 1px, transparent 1px);
+    background-size: 50px 50px;
+    border-radius: 8px;
+    pointer-events: none;
+}
+
+/* Poeira estelar */
+.starmap-dust {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    animation: dustTwinkle 3s ease-in-out infinite;
+}
+
+.dust-1 { top: 8%; left: 45%; animation-delay: 0s; }
+.dust-2 { top: 30%; left: 55%; animation-delay: 0.5s; }
+.dust-3 { top: 52%; left: 35%; animation-delay: 1s; }
+.dust-4 { top: 20%; left: 70%; animation-delay: 1.5s; }
+.dust-5 { top: 75%; left: 55%; animation-delay: 0.3s; }
+.dust-6 { top: 40%; left: 15%; animation-delay: 0.8s; }
+.dust-7 { top: 90%; left: 65%; animation-delay: 1.3s; }
+.dust-8 { top: 65%; left: 90%; animation-delay: 1.8s; }
+
+@keyframes dustTwinkle {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.8; transform: scale(1.5); }
+}
+
+/* Segundo pulso do centro */
+.starmap-center-pulse.pulse-2 {
+    animation-delay: 1s;
+}
+
+/* ============================
+   RESPONSIVE
+   ============================ */
+@media (max-width: 850px) {
+    /* Esconde nav desktop, mostra hamburger */
+    .nav-desktop {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .mobile-menu {
+        display: flex;
+    }
+
+    .section-layout,
+    .section-layout.layout-reverse {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "text-top"
+            "visual"
+            "text-bottom";
+        gap: 25px;
+        text-align: center;
+    }
+
+    .section-text-top,
+    .section-text-bottom {
+        align-items: center;
+    }
+
+    .section-body {
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .section-vip,
+    .section-caravanas {
+        min-height: auto;
+        padding: 50px 20px;
+    }
+
+    .radar-container {
+        width: 230px;
+        height: 230px;
+    }
+
+    .starmap-container {
+        width: 260px;
+        height: 260px;
+    }
+
+    .main-logo {
+        width: 300px;
+    }
+
+    .hero-date-value {
+        font-size: 1.3rem;
+    }
+
+    .premium-nav {
+        gap: 20px;
+    }
+
+    .nav-btn {
+        font-size: 0.7rem;
+        letter-spacing: 3px;
+    }
+
+    .cta-btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hud-lines {
+        display: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .section-title {
+        font-size: 1.5rem;
+    }
+    
+    .cta-btn {
+        font-size: 0.78rem;
+        padding: 14px 20px;
+    }
+
+    .radar-container {
+        width: 200px;
+        height: 200px;
+    }
+
+    .starmap-container {
+        width: 220px;
+        height: 220px;
+    }
+
+    .main-logo {
+        width: 260px;
+    }
+
+    .hero-section {
+        padding: 20px 15px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+    }
+
+    .section-body {
+        font-size: 0.85rem;
+    }
+}
+
+/* ============================
+   CLASSES LEGADO (História page)
+   ============================ */
+
 .star-wars-intro {
     font-size: 2rem;
     color: #4bd5ee;
@@ -122,7 +837,7 @@ body, html {
 }
 
 .primary-btn {
-    background: #FFC107;
+    background: var(--gold);
     color: #0A0A0A;
     border: none;
     padding: 15px 40px;
@@ -141,14 +856,6 @@ body, html {
     background: #FFE066;
     box-shadow: 0 0 25px rgba(255, 193, 7, 0.6);
     transform: scale(1.05);
-}
-
-/* --- ESTADO FINAL --- */
-.main-logo {
-    max-width: 90%;
-    width: 600px;
-    margin-bottom: 20px;
-    filter: drop-shadow(0 0 15px rgba(255, 193, 7, 0.3));
 }
 
 .save-the-date {
@@ -170,53 +877,8 @@ body, html {
     font-size: 1.8rem;
     font-weight: 700;
     letter-spacing: 3px;
-    color: #FFC107;
-    text-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
-
-.countdown-container {
-    margin-bottom: 30px;
-}
-
-.countdown-label {
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-    color: #aaa;
-}
-
-#countdown {
-    display: flex;
-    gap: 20px;
-    justify-content: center;
-}
-
-.time-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: rgba(255,255,255,0.03);
-    padding: 15px;
-    border-radius: 8px;
-    min-width: 80px;
-    border: 1px solid rgba(255,255,255,0.05);
-}
-
-.time-value {
-    font-size: 2.5rem;
-    font-weight: 700;
-    line-height: 1;
-    margin-bottom: 5px;
-    color: #FFC107;
-    text-shadow: 0 0 10px rgba(255, 193, 7, 0.3);
-}
-
-.time-label {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: #888;
+    color: var(--gold);
+    text-shadow: 0 0 15px var(--gold-glow);
 }
 
 .closing-phrase {
@@ -228,43 +890,52 @@ body, html {
     margin-top: 20px;
 }
 
-/* --- NAVEGAÇÃO & VIEWS --- */
-.premium-nav {
+/* --- História page state panel (legado) --- */
+.state-panel {
+    position: relative;
+    width: 90%;
+    max-width: 1000px;
+    max-height: 90vh;
+    overflow-y: auto;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1.5s ease, visibility 1.5s;
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 30px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-    padding-bottom: 15px;
-    width: 100%;
-    justify-content: center;
+    margin: 0 auto;
+    padding: 30px 0;
 }
 
-.nav-btn {
-    background: transparent;
-    border: none;
-    color: #fff;
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    cursor: pointer;
-    font-family: var(--font-main);
-    transition: color 0.3s, text-shadow 0.3s;
-    opacity: 0.5;
+.state-panel::-webkit-scrollbar {
+    width: 0px;
 }
 
-.nav-btn.active, .nav-btn:hover {
-    color: #FFC107;
+.state-panel.active {
     opacity: 1;
-    text-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+    visibility: visible;
 }
 
-.nav-separator {
-    color: rgba(255, 255, 255, 0.3);
-    font-size: 1.2rem;
-    font-weight: 300;
-    user-select: none;
+.state-panel.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
 }
 
+/* --- uiContainer for historia page --- */
+#uiContainer {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* --- HISTÓRIA (A SAGA) --- */
 .view {
     width: 100%;
     transition: opacity 0.5s ease;
@@ -278,7 +949,6 @@ body, html {
     animation: fadeInIntro 0.5s forwards;
 }
 
-/* --- HISTÓRIA (A SAGA) --- */
 .history-title {
     font-size: 1.8rem;
     color: #fff;
@@ -298,134 +968,123 @@ body, html {
 .history-card {
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .history-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    border-color: rgba(255, 193, 7, 0.3);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
 .card-banner {
     width: 100%;
     aspect-ratio: 16 / 9;
-    background: #0d0d0d;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #333;
-    font-size: 0.8rem;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-
-/* Quando o usuário colocar a imagem, ela usará .card-banner img */
-.card-banner img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
+    display: block;
 }
 
+.card-body {
+    padding: 20px;
+}
+
+.card-body .logo {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #000;
+    border-radius: 8px;
+    display: block;
+}
+
+.card-body h3 {
+    font-size: 1rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    margin: 10px 0 5px;
+}
+
+.card-body p {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* Historia card classes */
 .card-content {
-    padding: 25px;
+    padding: 20px;
 }
 
 .card-header {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
 .card-logo {
-    width: 50px;
-    height: 50px;
-    background-color: #000;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.6rem;
-    color: #444;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    background: #000;
+    border-radius: 8px;
     flex-shrink: 0;
 }
 
-.card-logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
-}
-
 .card-header h3 {
-    color: #FFC107;
-    font-size: 1.5rem;
-    letter-spacing: 2px;
+    font-size: 0.85rem;
+    color: var(--gold);
+    letter-spacing: 1px;
+    line-height: 1.3;
 }
 
 .card-lore {
-    font-size: 0.95rem;
-    color: #bbb;
-    line-height: 1.6;
-}
-
-.card-lore h4 {
-    color: #fff;
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-}
-
-.card-lore p {
-    margin-bottom: 15px;
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.5;
+    margin-bottom: 12px;
 }
 
 .read-more-btn {
-    margin-top: 15px;
     background: transparent;
-    border: 1px solid #FFC107;
-    color: #FFC107;
-    padding: 8px 15px;
-    font-size: 0.8rem;
-    font-weight: 700;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    color: var(--gold);
+    font-family: var(--font-main);
+    font-size: 0.75rem;
+    font-weight: 600;
     letter-spacing: 2px;
+    padding: 8px 16px;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 4px;
     transition: background 0.3s, color 0.3s;
+    text-transform: uppercase;
 }
 
 .read-more-btn:hover {
-    background: #FFC107;
+    background: var(--gold);
     color: #000;
 }
 
-/* --- MODAIS DE LEITURA --- */
+/* --- MODAIS --- */
 .story-modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(0, 0, 0, 0.85);
-    z-index: 9999;
+    z-index: 1000;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
 }
 
 .story-modal.active {
     opacity: 1;
-    visibility: visible;
 }
 
 .story-modal.hidden {
@@ -456,7 +1115,7 @@ body, html {
     margin-left: auto;
     margin-right: 15px;
     margin-top: 15px;
-    margin-bottom: -55px; /* Remove o espaço ocupado pelo botão para a imagem de fundo subir */
+    margin-bottom: -55px;
     background: #000;
     border: 1px solid #fff;
     border-radius: 50%;
@@ -475,8 +1134,7 @@ body, html {
 }
 
 .close-modal-btn:hover {
-    opacity: 1;
-    color: #FFC107;
+    color: var(--gold);
 }
 
 .modal-banner {
@@ -487,138 +1145,32 @@ body, html {
     align-items: center;
     justify-content: center;
     color: #555;
-    border-bottom: 1px solid rgba(255,255,255,0.05);
+    font-size: 1rem;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
 .modal-body {
-    padding: 40px;
+    padding: 30px;
 }
 
-.modal-body .card-lore {
-    font-size: 1.1rem; /* Texto maior para leitura no modal */
+.modal-body h2 {
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
 }
 
-/* Esconde scrollbar nativo do modal */
-.modal-content::-webkit-scrollbar {
-    width: 5px;
-}
-.modal-content::-webkit-scrollbar-thumb {
-    background: rgba(255, 193, 7, 0.5);
-    border-radius: 5px;
+.modal-body p {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: #ccc;
+    margin-bottom: 15px;
 }
 
-/* --- RESPONSIVIDADE --- */
+/* --- RESPONSIVE LEGADO --- */
 @media (max-width: 768px) {
-    .star-wars-intro {
-        font-size: 1.4rem;
-        text-align: center;
-    }
-    .main-logo {
-        width: 100%;
-        max-width: 350px;
-    }
-    .save-the-date .date {
-        font-size: 1.5rem;
-    }
-    #countdown {
-        gap: 10px;
-    }
-    .time-block {
-        min-width: 60px;
-        padding: 10px;
-    }
-    .time-value {
-        font-size: 1.8rem;
-    }
-    .time-label {
-        font-size: 0.7rem;
-    }
     .history-grid {
         grid-template-columns: 1fr;
     }
-    .premium-nav {
-        flex-direction: row;
-        gap: 15px;
-        font-size: 0.9rem; /* Levemente menor para caber na tela do celular */
-    }
-}
-
-/* --- PRÉ-VENDA --- */
-.presale-section {
-    margin-top: 20px;
-    padding: 30px 20px;
-    background: transparent;
-    border: none;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-
-.star-wars-title {
-    color: #000;
-    -webkit-text-stroke: 1.5px #FFC107;
-    text-shadow: 2px 2px 0px rgba(0,0,0,0.8), 0 0 15px rgba(255, 193, 7, 0.4);
-    font-size: 2.8rem;
-    font-weight: 900;
-    margin-bottom: 20px;
-    letter-spacing: 3px;
-    font-family: var(--font-main);
-    line-height: 1.1;
-}
-
-.presale-text {
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 15px;
-    line-height: 1.5;
-}
-
-.presale-text strong {
-    color: #FFC107;
-}
-
-.presale-highlight {
-    font-size: 1.2rem;
-    color: #FFC107;
-    font-weight: 700;
-    margin-bottom: 25px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.small-text {
-    font-size: 0.9rem;
-    color: #aaa;
-    margin-bottom: 30px;
-}
-
-.whatsapp-btn {
-    display: inline-block;
-    background: #FFC107;
-    color: #000;
-    font-weight: 900;
-    font-size: 1.2rem;
-    padding: 15px 40px;
-    border-radius: 5px;
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 20px;
-    transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
-    box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
-}
-
-.whatsapp-btn:hover {
-    transform: scale(1.05);
-    background: #fff;
-    box-shadow: 0 0 25px rgba(255, 193, 7, 0.8);
-}
-
-.presale-warning {
-    font-size: 0.9rem;
-    color: #ff4444;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
 }
