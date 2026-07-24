@@ -858,6 +858,57 @@ body {
 }
 
 /* ============================
+   LOJINHA (Seção Home)
+   ============================ */
+.section-lojinha {
+    padding: 80px 0;
+}
+
+.lojinha-float-img {
+    max-width: 280px;
+    width: 100%;
+    filter: drop-shadow(0 0 30px rgba(255, 193, 7, 0.25));
+    animation: lojinhaFloat 3s ease-in-out infinite;
+}
+
+@keyframes lojinhaFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+.lojinha-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.lojinha-list li {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding-left: 20px;
+    position: relative;
+}
+
+.lojinha-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: #FFC107;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(255, 193, 7, 0.5);
+}
+
+/* ============================
    RESPONSIVE
    ============================ */
 /* Promoters grid: tablet */
