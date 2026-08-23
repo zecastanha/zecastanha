@@ -160,3 +160,38 @@ window.addEventListener('popstate', () => {
         }
     });
 });
+
+// --- HAMBURGER MENU ---
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+        hamburgerBtn.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+    });
+}
+
+function closeMobileMenu() {
+    if (hamburgerBtn && mobileMenu) {
+        hamburgerBtn.classList.remove('open');
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+// --- EVENT TRACKING (Meta Pixel & Google Analytics) ---
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+
+    if (href.includes('blacktag.com.br/eventos/')) {
+        if (typeof fbq === 'function') fbq('track', 'InitiateCheckout', { content_name: 'Ingresso Zé Castanha IX' });
+        if (typeof gtag === 'function') gtag('event', 'begin_checkout', { event_category: 'ecommerce', event_label: 'BlackTag' });
+    } else if (href.includes('store.blacktag.com.br')) {
+        if (typeof fbq === 'function') fbq('track', 'ViewContent', { content_name: 'Lojinha Oficial' });
+        if (typeof gtag === 'function') gtag('event', 'view_store', { event_category: 'ecommerce', event_label: 'Lojinha Store' });
+    }
+});

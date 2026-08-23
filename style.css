@@ -232,6 +232,57 @@ body {
     text-shadow: 0 0 20px var(--gold-glow);
 }
 
+/* --- HERO COUNTDOWN --- */
+.hero-countdown {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 10px;
+    padding: 8px 18px;
+    background: rgba(255, 193, 7, 0.05);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    border-radius: 30px;
+    backdrop-filter: blur(8px);
+}
+
+.countdown-unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 38px;
+}
+
+.countdown-val {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--gold-glow);
+    line-height: 1.1;
+}
+
+.countdown-tag {
+    font-size: 0.55rem;
+    letter-spacing: 1.5px;
+    color: rgba(255, 255, 255, 0.45);
+    text-transform: uppercase;
+}
+
+.countdown-colon {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 8px;
+    animation: blinkColon 1s infinite;
+}
+
+@keyframes blinkColon {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.2; }
+}
+
 /* --- SCROLL INDICATOR --- */
 .scroll-indicator {
     position: absolute;
@@ -462,7 +513,103 @@ body {
 }
 
 .promoters-hero .section-body {
-    max-width: 520px;
+    max-width: 680px;
+}
+
+/* Filtro e Busca de Promoters */
+.promoters-filter-wrap {
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.promoter-search-box {
+    position: relative;
+    width: 100%;
+    max-width: 440px;
+}
+
+.promoter-search-box .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    stroke: #FFC107;
+    stroke-width: 2.5;
+    fill: none;
+    pointer-events: none;
+    opacity: 0.9;
+    z-index: 2;
+}
+
+.promoter-search-input {
+    width: 100%;
+    padding: 12px 18px 12px 48px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 30px;
+    color: #fff;
+    font-family: var(--font-main);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.promoter-search-input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 22px rgba(255, 193, 7, 0.4);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.promoter-search-input::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.city-filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 10px;
+}
+
+.city-chip {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 193, 7, 0.2);
+    border-radius: 20px;
+    padding: 6px 14px;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    text-transform: uppercase;
+}
+
+.city-chip:hover {
+    border-color: var(--gold);
+    color: #fff;
+    background: rgba(255, 193, 7, 0.1);
+}
+
+.city-chip.active {
+    background: var(--gold);
+    color: #000;
+    font-weight: 700;
+    border-color: var(--gold);
+    box-shadow: 0 0 12px rgba(255, 193, 7, 0.5);
+}
+
+.promoter-card.hidden-filter {
+    display: none !important;
 }
 
 /* Grid de cards */
@@ -925,6 +1072,15 @@ body {
     }
     .promoters-page {
         padding: 0 16px 60px;
+    }
+    .promoter-search-input {
+        padding: 11px 16px 11px 42px;
+        font-size: 0.9rem;
+    }
+    .city-chip {
+        padding: 5px 11px;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
     }
 }
 

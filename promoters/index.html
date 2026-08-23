@@ -13,6 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -23,30 +24,86 @@
       gtag('js', new Date());
       gtag('config', 'G-5NX6RLXTT3');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9953934791370507');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
     <canvas id="spaceCanvas"></canvas>
 
     <div class="promoters-page">
-        <nav class="premium-nav" style="position:relative; padding:25px 0;">
-            <a href="../index.html" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
+        <!-- Nav Desktop -->
+        <nav class="premium-nav nav-desktop" style="position:relative; padding:25px 0;">
+            <a href="../" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
             <span class="nav-separator">|</span>
             <a href="./" class="nav-btn active" style="text-decoration:none;">PROMOTERS</a>
             <span class="nav-separator">|</span>
-            <a href="../index.html#caravanas" class="nav-btn" style="text-decoration:none;">CARAVANAS</a>
+            <a href="../#caravanas" class="nav-btn" style="text-decoration:none;">CARAVANAS</a>
             <span class="nav-separator">|</span>
-            <a href="../index.html#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
+            <a href="../#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
             <span class="nav-separator">|</span>
-            <a href="../lojinha/index.html" class="nav-btn" style="text-decoration:none;">LOJINHA</a>
+            <a href="../lojinha/" class="nav-btn" style="text-decoration:none;">LOJINHA</a>
             <span class="nav-separator">|</span>
-            <a href="../historia/index.html" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
+            <a href="../historia/" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
         </nav>
+
+        <!-- Hamburger (Mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-menu-nav">
+                <a href="../" class="mobile-menu-link">INÍCIO</a>
+                <a href="./" class="mobile-menu-link active">PROMOTERS</a>
+                <a href="../#caravanas" class="mobile-menu-link" onclick="closeMobileMenu()">CARAVANAS</a>
+                <a href="../#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
+                <a href="../lojinha/" class="mobile-menu-link">LOJINHA</a>
+                <a href="../historia/" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="../links/" class="mobile-menu-link">LINKS</a>
+            </nav>
+        </div>
 
         <div class="promoters-hero">
             <p class="section-tag">// EMBAIXADORES DA MISSÃO</p>
             <h1 class="section-title">taxa zero</h1>
-            <p class="section-subtitle">Compre seu ingresso sem taxa de serviço.</p>
             <p class="section-body">Escolha um promoter oficial e garanta seu lugar na Zé Castanha IX — Nas Estrelas.<br>Sem taxa. Sem pegadinha. O mesmo ingresso, direto na mão.</p>
+        </div>
+
+        <!-- Busca e Filtro de Cidades -->
+        <div class="promoters-filter-wrap">
+            <div class="promoter-search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="promoterSearch" class="promoter-search-input" placeholder="Buscar por Bauru..." autocomplete="off">
+            </div>
+            <div class="city-filter-chips" id="cityChips">
+                <button class="city-chip active" data-city="all">TODAS</button>
+                <button class="city-chip" data-city="bauru">BAURU</button>
+                <button class="city-chip" data-city="botucatu">BOTUCATU</button>
+                <button class="city-chip" data-city="jau">JAÚ</button>
+                <button class="city-chip" data-city="sao carlos">SÃO CARLOS</button>
+                <button class="city-chip" data-city="marilia">MARÍLIA</button>
+                <button class="city-chip" data-city="araraquara">ARARAQUARA</button>
+                <button class="city-chip" data-city="avare">AVARÉ</button>
+            </div>
         </div>
 
         <div class="promoters-grid">
@@ -313,7 +370,7 @@
 
     <script src="../script.js"></script>
     <script>
-        // Embaralha cards (Fisher-Yates) a cada carregamento
+        // 1. Embaralha cards (Fisher-Yates) a cada carregamento
         (function() {
             var grid = document.querySelector('.promoters-grid');
             if (!grid) return;
@@ -322,6 +379,97 @@
                 var j = Math.floor(Math.random() * (i + 1));
                 grid.appendChild(cards[j]);
                 cards.splice(j, 1, cards[i]);
+            }
+        })();
+
+        // 2. Busca e Filtro de Promoters
+        (function() {
+            var searchInput = document.getElementById('promoterSearch');
+            var chips = document.querySelectorAll('.city-chip');
+            var cards = document.querySelectorAll('.promoter-card');
+            var selectedCity = 'all';
+
+            function normalizeText(str) {
+                return (str || '').normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
+            }
+
+            function filterPromoters() {
+                var query = normalizeText(searchInput ? searchInput.value : '');
+
+                cards.forEach(function(card) {
+                    var name = normalizeText(card.querySelector('.promoter-name') ? card.querySelector('.promoter-name').textContent : '');
+                    var city = normalizeText(card.querySelector('.promoter-city') ? card.querySelector('.promoter-city').textContent : '');
+
+                    var matchesCity = (selectedCity === 'all') || city.includes(selectedCity);
+                    var matchesQuery = !query || name.includes(query) || city.includes(query);
+
+                    if (matchesCity && matchesQuery) {
+                        card.classList.remove('hidden-filter');
+                    } else {
+                        card.classList.add('hidden-filter');
+                    }
+                });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterPromoters);
+            }
+
+            chips.forEach(function(chip) {
+                chip.addEventListener('click', function() {
+                    chips.forEach(function(c) { c.classList.remove('active'); });
+                    chip.classList.add('active');
+                    selectedCity = normalizeText(chip.getAttribute('data-city'));
+                    filterPromoters();
+                });
+            });
+
+            // 3. Efeito Typewriter no Placeholder
+            if (searchInput) {
+                var placeholders = [
+                    'Buscar por Bauru...',
+                    'Buscar por Jaú...',
+                    'Buscar por Botucatu...',
+                    'Buscar por São Carlos...',
+                    'Buscar por Marília...',
+                    'Buscar por Araraquara...',
+                    'Buscar por promoter ou cidade...'
+                ];
+                var pIndex = 0;
+                var charIndex = 0;
+                var isDeleting = false;
+                var isPaused = false;
+
+                function typeEffect() {
+                    if (isPaused || document.activeElement === searchInput || searchInput.value.length > 0) {
+                        setTimeout(typeEffect, 1000);
+                        return;
+                    }
+
+                    var currentText = placeholders[pIndex];
+                    if (isDeleting) {
+                        charIndex--;
+                        searchInput.setAttribute('placeholder', currentText.substring(0, charIndex));
+                        if (charIndex <= 0) {
+                            isDeleting = false;
+                            pIndex = (pIndex + 1) % placeholders.length;
+                            setTimeout(typeEffect, 400);
+                            return;
+                        }
+                        setTimeout(typeEffect, 40);
+                    } else {
+                        charIndex++;
+                        searchInput.setAttribute('placeholder', currentText.substring(0, charIndex));
+                        if (charIndex >= currentText.length) {
+                            isDeleting = true;
+                            setTimeout(typeEffect, 1800);
+                            return;
+                        }
+                        setTimeout(typeEffect, 80);
+                    }
+                }
+
+                setTimeout(typeEffect, 1200);
             }
         })();
     </script>

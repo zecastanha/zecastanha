@@ -114,3 +114,129 @@ function closeMobileMenu() {
         document.body.style.overflow = '';
     }
 }
+
+// --- SMOOTH SCROLL SEM '#' NA URL ---
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        const targetId = this.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            e.preventDefault();
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+            if (history.replaceState) {
+                history.replaceState(null, null, window.location.pathname);
+            }
+            closeMobileMenu();
+        }
+    });
+});
+
+// Se carregar com hash, rola suave e remove o hash da barra de endereços
+window.addEventListener('DOMContentLoaded', () => {
+    if (window.location.hash) {
+        const targetId = window.location.hash.substring(1);
+        const target = document.getElementById(targetId);
+        if (target) {
+            setTimeout(() => {
+                target.scrollIntoView({ behavior: 'smooth' });
+                if (history.replaceState) {
+                    history.replaceState(null, null, window.location.pathname);
+                }
+            }, 150);
+        }
+    }
+});
+
+// --- COUNTDOWN TIMER (18.09.2026) ---
+const countdownEl = document.getElementById('heroCountdown');
+if (countdownEl) {
+    const targetDate = new Date('2026-09-18T18:00:00-03:00').getTime();
+    const daysEl = document.getElementById('cdDays');
+    const hoursEl = document.getElementById('cdHours');
+    const minEl = document.getElementById('cdMinutes');
+    const secEl = document.getElementById('cdSeconds');
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+            if (daysEl) daysEl.textContent = '00';
+            if (hoursEl) hoursEl.textContent = '00';
+            if (minEl) minEl.textContent = '00';
+            if (secEl) secEl.textContent = '00';
+            return;
+        }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+        if (minEl) minEl.textContent = String(minutes).padStart(2, '0');
+        if (secEl) secEl.textContent = String(seconds).padStart(2, '0');
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+}
+
+// --- EVENT TRACKING (Meta Pixel & Google Analytics) ---
+document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href') || '';
+
+    // Clique em WhatsApp de Promoter
+    if (href.includes('wa.me')) {
+        const card = link.closest('.promoter-card');
+        const promoterName = card?.querySelector('.promoter-name')?.textContent.trim() || 'Promoter';
+        const promoterCity = card?.querySelector('.promoter-city')?.textContent.replace(/[^a-zA-ZÀ-ÿ\s]/g, '').trim() || '';
+        
+        if (typeof fbq === 'function') {
+            fbq('trackCustom', 'Click_Promoter_WhatsApp', { promoter: promoterName, city: promoterCity });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'contact_promoter', { promoter_name: promoterName, city: promoterCity });
+        }
+    }
+    // Clique em Compra BlackTag (Ingresso)
+    else if (href.includes('blacktag.com.br/eventos/')) {
+        if (typeof fbq === 'function') {
+            fbq('track', 'InitiateCheckout', { content_name: 'Ingresso Zé Castanha IX' });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'begin_checkout', { event_category: 'ecommerce', event_label: 'BlackTag' });
+        }
+    }
+    // Clique na Lojinha Oficial
+    else if (href.includes('store.blacktag.com.br')) {
+        if (typeof fbq === 'function') {
+            fbq('track', 'ViewContent', { content_name: 'Lojinha Oficial' });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'view_store', { event_category: 'ecommerce', event_label: 'Lojinha Store' });
+        }
+    }
+    // Clique em Caravanas (Google Forms)
+    else if (href.includes('forms/d/e/') || href.includes('docs.google.com/forms')) {
+        if (typeof fbq === 'function') {
+            fbq('track', 'Lead', { content_name: 'Cadastro de Caravana' });
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'caravana_signup', { event_category: 'caravanas' });
+        }
+    }
+    // Clique em Grupo VIP
+    else if (href.includes('chat.whatsapp.com')) {
+        if (typeof fbq === 'function') {
+            fbq('trackCustom', 'Join_VIP_Group');
+        }
+        if (typeof gtag === 'function') {
+            gtag('event', 'join_vip_group', { event_category: 'community' });
+        }
+    }
+});

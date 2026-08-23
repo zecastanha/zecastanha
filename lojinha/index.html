@@ -10,7 +10,7 @@
     <meta property="og:image" content="https://zecastanha.com/assets/produtos/caneca%20e%20tirante.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../style.css">
 
     <!-- Google Analytics -->
@@ -21,6 +21,24 @@
         gtag('js', new Date());
         gtag('config', 'G-5NX6RLXTT3');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9953934791370507');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 
     <style>
         html, body {
@@ -250,17 +268,17 @@
         <!-- Nav Desktop -->
         <div class="lojinha-nav-wrap">
             <nav class="premium-nav" style="position:relative;">
-                <a href="../index.html" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
+                <a href="../" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
                 <span class="nav-separator">|</span>
-                <a href="../promoters/index.html" class="nav-btn" style="text-decoration:none;">PROMOTERS</a>
+                <a href="../promoters/" class="nav-btn" style="text-decoration:none;">PROMOTERS</a>
                 <span class="nav-separator">|</span>
-                <a href="../index.html#caravanas" class="nav-btn" style="text-decoration:none;">CARAVANAS</a>
+                <a href="../#caravanas" class="nav-btn" style="text-decoration:none;">CARAVANAS</a>
                 <span class="nav-separator">|</span>
-                <a href="../index.html#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
+                <a href="../#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
                 <span class="nav-separator">|</span>
                 <a href="./" class="nav-btn active" style="text-decoration:none;">LOJINHA</a>
                 <span class="nav-separator">|</span>
-                <a href="../historia/index.html" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
+                <a href="../historia/" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
             </nav>
         </div>
 
@@ -274,12 +292,13 @@
         <!-- Mobile Menu -->
         <div class="mobile-menu" id="mobileMenu">
             <nav class="mobile-menu-nav">
-                <a href="../index.html" class="mobile-menu-link">INÍCIO</a>
-                <a href="../promoters/index.html" class="mobile-menu-link">PROMOTERS</a>
-                <a href="../index.html#caravanas" class="mobile-menu-link">CARAVANAS</a>
-                <a href="../index.html#vip" class="mobile-menu-link">GRUPO VIP</a>
+                <a href="../" class="mobile-menu-link">INÍCIO</a>
+                <a href="../promoters/" class="mobile-menu-link">PROMOTERS</a>
+                <a href="../#caravanas" class="mobile-menu-link" onclick="closeMobileMenu()">CARAVANAS</a>
+                <a href="../#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
                 <a href="./" class="mobile-menu-link active">LOJINHA</a>
-                <a href="../historia/index.html" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="../historia/" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="../links/" class="mobile-menu-link">LINKS</a>
             </nav>
         </div>
 

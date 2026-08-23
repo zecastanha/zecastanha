@@ -12,6 +12,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <!-- Usa o mesmo CSS do projeto raiz -->
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,27 +27,65 @@
 
       gtag('config', 'G-5NX6RLXTT3');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9953934791370507');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
     <canvas id="spaceCanvas"></canvas>
+
+    <!-- Hamburger (Mobile) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-nav">
+            <a href="../" class="mobile-menu-link">INÍCIO</a>
+            <a href="../promoters/" class="mobile-menu-link">PROMOTERS</a>
+            <a href="../#caravanas" class="mobile-menu-link" onclick="closeMobileMenu()">CARAVANAS</a>
+            <a href="../#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
+            <a href="../lojinha/" class="mobile-menu-link">LOJINHA</a>
+            <a href="./" class="mobile-menu-link active">HISTÓRIA</a>
+            <a href="../links/" class="mobile-menu-link">LINKS</a>
+        </nav>
+    </div>
 
     <div id="uiContainer">
         <!-- O state-panel já aparece ativo na página de história -->
         <div class="state-panel active" style="opacity: 1; visibility: visible;">
             
             <!-- Menu de Navegação -->
-            <nav class="premium-nav" style="padding-top: 20px; flex-wrap: wrap; gap: 5px;">
-                <a href="../index.html" class="nav-btn" style="text-decoration: none;">INÍCIO</a>
+            <nav class="premium-nav nav-desktop" style="padding-top: 20px; flex-wrap: wrap; gap: 5px;">
+                <a href="../" class="nav-btn" style="text-decoration: none;">INÍCIO</a>
                 <span class="nav-separator">|</span>
-                <a href="../promoters/index.html" class="nav-btn" style="text-decoration: none;">PROMOTERS</a>
+                <a href="../promoters/" class="nav-btn" style="text-decoration: none;">PROMOTERS</a>
                 <span class="nav-separator">|</span>
-                <a href="../index.html#caravanas" class="nav-btn" style="text-decoration: none;">CARAVANAS</a>
+                <a href="../#caravanas" class="nav-btn" style="text-decoration: none;">CARAVANAS</a>
                 <span class="nav-separator">|</span>
-                <a href="../index.html#vip" class="nav-btn" style="text-decoration: none;">GRUPO VIP</a>
+                <a href="../#vip" class="nav-btn" style="text-decoration: none;">GRUPO VIP</a>
                 <span class="nav-separator">|</span>
-                <a href="../lojinha/index.html" class="nav-btn" style="text-decoration: none;">LOJINHA</a>
+                <a href="../lojinha/" class="nav-btn" style="text-decoration: none;">LOJINHA</a>
                 <span class="nav-separator">|</span>
-                <a href="index.html" class="nav-btn active" style="text-decoration: none;">HISTÓRIA</a>
+                <a href="./" class="nav-btn active" style="text-decoration: none;">HISTÓRIA</a>
             </nav>
 
             <h2 class="history-title" style="margin-top: 40px;">OS CAPÍTULOS ANTERIORES</h2>

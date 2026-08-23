@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Preload da logo -->
-    <link rel="preload" href="assets/FUNDO%201%20PNG%20deitada.png" as="image">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
     <link rel="stylesheet" href="style.css">
 
     <!-- Google tag (gtag.js) -->
@@ -27,6 +27,24 @@
       gtag('js', new Date());
       gtag('config', 'G-5NX6RLXTT3');
     </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9953934791370507');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
 </head>
 <body>
     <!-- Canvas de fundo fixo para as estrelas -->
@@ -36,17 +54,17 @@
     <section class="hero-section">
         <!-- Nav Desktop -->
         <nav class="premium-nav nav-desktop">
-            <a href="index.html" class="nav-btn active" style="text-decoration: none;">INÍCIO</a>
+            <a href="./" class="nav-btn active" style="text-decoration: none;">INÍCIO</a>
             <span class="nav-separator">|</span>
-            <a href="promoters/index.html" class="nav-btn" style="text-decoration: none;">PROMOTERS</a>
+            <a href="./promoters/" class="nav-btn" style="text-decoration: none;">PROMOTERS</a>
             <span class="nav-separator">|</span>
             <a href="#caravanas" class="nav-btn" style="text-decoration: none;">CARAVANAS</a>
             <span class="nav-separator">|</span>
             <a href="#vip" class="nav-btn" style="text-decoration: none;">GRUPO VIP</a>
             <span class="nav-separator">|</span>
-            <a href="lojinha/index.html" class="nav-btn" style="text-decoration: none;">LOJINHA</a>
+            <a href="./lojinha/" class="nav-btn" style="text-decoration: none;">LOJINHA</a>
             <span class="nav-separator">|</span>
-            <a href="historia/index.html" class="nav-btn" style="text-decoration: none;">HISTÓRIA</a>
+            <a href="./historia/" class="nav-btn" style="text-decoration: none;">HISTÓRIA</a>
         </nav>
 
         <!-- Hamburger (Mobile) -->
@@ -59,12 +77,13 @@
         <!-- Mobile Menu Overlay -->
         <div class="mobile-menu" id="mobileMenu">
             <nav class="mobile-menu-nav">
-                <a href="index.html" class="mobile-menu-link active">INÍCIO</a>
-                <a href="promoters/index.html" class="mobile-menu-link">PROMOTERS</a>
-                <a href="historia/index.html" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="./" class="mobile-menu-link active">INÍCIO</a>
+                <a href="./promoters/" class="mobile-menu-link">PROMOTERS</a>
                 <a href="#caravanas" class="mobile-menu-link" onclick="closeMobileMenu()">CARAVANAS</a>
                 <a href="#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
-                <a href="lojinha/index.html" class="mobile-menu-link">LOJINHA</a>
+                <a href="./lojinha/" class="mobile-menu-link">LOJINHA</a>
+                <a href="./historia/" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="./links/" class="mobile-menu-link">LINKS</a>
             </nav>
         </div>
 
@@ -75,11 +94,32 @@
         <div class="hero-date">
             <p class="hero-date-label">SAVE THE DATE</p>
             <p class="hero-date-value">18.09.2026</p>
+            <div class="hero-countdown" id="heroCountdown">
+                <div class="countdown-unit">
+                    <span class="countdown-val" id="cdDays">00</span>
+                    <span class="countdown-tag">DIAS</span>
+                </div>
+                <span class="countdown-colon">:</span>
+                <div class="countdown-unit">
+                    <span class="countdown-val" id="cdHours">00</span>
+                    <span class="countdown-tag">HORAS</span>
+                </div>
+                <span class="countdown-colon">:</span>
+                <div class="countdown-unit">
+                    <span class="countdown-val" id="cdMinutes">00</span>
+                    <span class="countdown-tag">MIN</span>
+                </div>
+                <span class="countdown-colon">:</span>
+                <div class="countdown-unit">
+                    <span class="countdown-val" id="cdSeconds">00</span>
+                    <span class="countdown-tag">SEG</span>
+                </div>
+            </div>
         </div>
 
         <!-- Botões de Compra -->
         <div class="hero-cta-group">
-            <a href="promoters/index.html" class="cta-btn cta-gold">COMPRE COM TAXA ZERO</a>
+            <a href="./promoters/" class="cta-btn cta-gold">COMPRE COM TAXA ZERO</a>
             <a href="https://blacktag.com.br/eventos/32653/ze-castanha-ix-nas-estrelas" target="_blank" class="cta-btn cta-outline">COMPRE NO SITE</a>
         </div>
 
