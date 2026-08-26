@@ -194,12 +194,41 @@ body {
     transform: scale(1.05);
 }
 
-/* --- LOGO --- */
-.main-logo {
-    max-width: 85%;
-    width: 500px;
-    filter: drop-shadow(0 0 25px rgba(255, 193, 7, 0.2));
+/* --- LOGO (canto superior esquerdo) --- */
+.hero-logo-badge {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+    z-index: 25;
+    height: 34px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 193, 7, 0.35));
+}
+
+/* --- BANNER PRINCIPAL (capa do evento) ---
+   Sem card/borda: a imagem se funde no cenário via mask (fade radial nas
+   bordas) em vez de ficar "flutuando" dentro de uma caixa. Proporção
+   cinematográfica 2.35:1 — recorta o topo da arte (line-up/headline) e
+   descarta a faixa de data/local de baixo, que já é redundante com o
+   Save the Date logo abaixo. */
+.hero-banner {
+    position: relative;
+    width: 100%;
+    max-width: 980px;
+    margin: 64px auto 0;
     animation: floatLogo 4s ease-in-out infinite;
+}
+
+.hero-banner-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 2.35 / 1;
+    object-fit: cover;
+    object-position: top;
+    -webkit-mask-image: radial-gradient(ellipse 72% 78% at center, #000 60%, transparent 100%);
+    mask-image: radial-gradient(ellipse 72% 78% at center, #000 60%, transparent 100%);
+    filter: drop-shadow(0 0 50px rgba(255, 193, 7, 0.16));
 }
 
 @keyframes floatLogo {
@@ -1159,8 +1188,14 @@ body {
         height: 260px;
     }
 
-    .main-logo {
-        width: 300px;
+    .hero-banner {
+        margin-top: 56px;
+    }
+
+    .hero-logo-badge {
+        height: 26px;
+        top: 14px;
+        left: 14px;
     }
 
     .hero-date-value {
@@ -1212,8 +1247,12 @@ body {
         height: 220px;
     }
 
-    .main-logo {
-        width: 260px;
+    .hero-banner {
+        margin-top: 50px;
+    }
+
+    .hero-logo-badge {
+        height: 22px;
     }
 
     .hero-section {

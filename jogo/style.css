@@ -1,0 +1,176 @@
+/* ============================
+   ZÉ CASTANHA — JOGO (Gambiarra Game)
+   Estilos específicos da página /jogo
+   ============================ */
+
+.jogo-body {
+    overflow: hidden;
+    height: 100vh;
+}
+
+.jogo-stage {
+    position: relative;
+    z-index: 10;
+    height: calc(100vh - 90px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+.jogo-frame {
+    position: relative;
+    width: min(100%, 480px);
+    height: 100%;
+    max-height: 854px;
+    aspect-ratio: 9 / 16;
+    border: 1px solid rgba(255, 193, 7, 0.25);
+    border-radius: 16px;
+    overflow: hidden;
+    background: rgba(3, 3, 5, 0.35);
+    box-shadow: 0 0 40px var(--gold-glow);
+}
+
+#jogo-canvas-root {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+#jogo-canvas-root canvas {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* --- HUD --- */
+.jogo-hud {
+    position: absolute;
+    top: 14px;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    pointer-events: none;
+}
+
+.jogo-hud.hidden {
+    display: none;
+}
+
+.hud-left {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+}
+
+#hudScore {
+    font-family: var(--font-mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--gold);
+    text-shadow: 0 0 12px var(--gold-glow);
+}
+
+.hud-combo {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--blue);
+    text-shadow: 0 0 10px var(--blue-glow);
+    letter-spacing: 1px;
+}
+
+.hud-combo.hidden {
+    display: none;
+}
+
+.hud-mute {
+    pointer-events: auto;
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    padding: 4px 8px;
+    cursor: pointer;
+}
+
+/* --- TELAS (start / game over) --- */
+.jogo-screen {
+    position: absolute;
+    inset: 0;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-align: center;
+    padding: 30px 24px;
+    background: rgba(3, 3, 5, 0.72);
+    backdrop-filter: blur(2px);
+}
+
+.jogo-screen.hidden {
+    display: none;
+}
+
+.jogo-tag {
+    font-family: var(--font-mono);
+    color: var(--blue);
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.jogo-title {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 1.8rem;
+    line-height: 1.15;
+    text-transform: uppercase;
+}
+
+.jogo-sub {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    max-width: 320px;
+}
+
+.jogo-hint {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--gold-soft);
+    opacity: 0.9;
+}
+
+.jogo-score-label {
+    font-family: var(--font-mono);
+    letter-spacing: 3px;
+    opacity: 0.7;
+    font-size: 0.8rem;
+}
+
+.jogo-score-value {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 3rem;
+    color: var(--gold);
+    text-shadow: 0 0 16px var(--gold-glow);
+    line-height: 1;
+}
+
+.jogo-screen .cta-btn {
+    margin-top: 6px;
+}
+
+@media (max-width: 480px) {
+    .jogo-title {
+        font-size: 1.5rem;
+    }
+}

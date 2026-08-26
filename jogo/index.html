@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Jogo — Zé Castanha IX Nas Estrelas</title>
+    <meta property="og:title" content="Pilote a Gambiarra I — Jogo da Zé Castanha">
+    <meta property="og:description" content="Sobreviva o máximo que conseguir pilotando a nave do vô. O #1 do ranking ganha uma cortesia.">
+    <meta property="og:image" content="https://zecastanha.com/assets/preview.png">
+    <meta property="og:url" content="https://zecastanha.com/jogo">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../assets/favicon.png">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5NX6RLXTT3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5NX6RLXTT3');
+    </script>
+
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '9953934791370507');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+</head>
+<body class="jogo-body">
+    <canvas id="spaceCanvas"></canvas>
+
+    <!-- Nav Desktop -->
+    <nav class="premium-nav nav-desktop" style="position:relative; padding:25px 0;">
+        <a href="../" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
+        <span class="nav-separator">|</span>
+        <a href="../promoters/" class="nav-btn" style="text-decoration:none;">PROMOTERS</a>
+        <span class="nav-separator">|</span>
+        <a href="../caravanas/" class="nav-btn" style="text-decoration:none;">CARAVANAS</a>
+        <span class="nav-separator">|</span>
+        <a href="../#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
+        <span class="nav-separator">|</span>
+        <a href="../lojinha/" class="nav-btn" style="text-decoration:none;">LOJINHA</a>
+        <span class="nav-separator">|</span>
+        <a href="../historia/" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
+        <span class="nav-separator">|</span>
+        <a href="./" class="nav-btn active" style="text-decoration:none;">JOGO</a>
+    </nav>
+
+    <!-- Hamburger (Mobile) -->
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+    </button>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu" id="mobileMenu">
+        <nav class="mobile-menu-nav">
+            <a href="../" class="mobile-menu-link">INÍCIO</a>
+            <a href="../promoters/" class="mobile-menu-link">PROMOTERS</a>
+            <a href="../caravanas/" class="mobile-menu-link">CARAVANAS</a>
+            <a href="../#vip" class="mobile-menu-link">GRUPO VIP</a>
+            <a href="../lojinha/" class="mobile-menu-link">LOJINHA</a>
+            <a href="../historia/" class="mobile-menu-link">HISTÓRIA</a>
+            <a href="./" class="mobile-menu-link active">JOGO</a>
+        </nav>
+    </div>
+
+    <!-- ====== PALCO DO JOGO ====== -->
+    <main class="jogo-stage">
+        <div id="jogo-frame" class="jogo-frame">
+            <div id="jogo-canvas-root"></div>
+
+            <!-- HUD (durante o jogo) -->
+            <div id="hud" class="jogo-hud hidden">
+                <div class="hud-left">
+                    <span id="hudScore">0</span>
+                    <span id="hudCombo" class="hud-combo hidden">COMBO x2</span>
+                </div>
+                <button id="muteBtn" class="hud-mute" aria-label="Mudo">🔊</button>
+            </div>
+
+            <!-- Tela inicial -->
+            <section id="screen-start" class="jogo-screen">
+                <p class="jogo-tag">// GAMBIARRA I</p>
+                <h1 class="jogo-title">PILOTE A NAVE DO VÔ</h1>
+                <p class="jogo-sub">Sobreviva o máximo que conseguir. O #1 do ranking ganha 1 cortesia pra Zé Castanha IX.</p>
+                <p class="jogo-hint">ARRASTA PRA DESVIÁ. U VÔ CUIDA DO RESTO. 👴🚀</p>
+                <button id="btnPlay" class="cta-btn cta-gold">JOGAR</button>
+                <a href="../promoters/" class="cta-btn cta-outline">INGRESSOS 18/09</a>
+            </section>
+
+            <!-- Tela de Game Over -->
+            <section id="screen-gameover" class="jogo-screen hidden">
+                <h2 class="jogo-title" style="font-size:1.6rem;">GAMBIARRA I FOI DE BASE 💥</h2>
+                <p class="jogo-score-label">SCORE</p>
+                <p id="finalScore" class="jogo-score-value">0</p>
+                <p id="bestScoreNote" class="jogo-sub hidden">NOVO RECORDE 🏆</p>
+                <button id="btnReplay" class="cta-btn cta-gold">JOGAR DE NOVO</button>
+                <a href="../promoters/" class="cta-btn cta-outline">GARANTIR MEU INGRESSO</a>
+            </section>
+        </div>
+    </main>
+
+    <!-- Phaser via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
+    <script src="script.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

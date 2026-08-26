@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caravanas — Zé Castanha IX Nas Estrelas</title>
-    
+
     <meta property="og:title" content="Caravanas — Zé Castanha IX Nas Estrelas">
-    <meta property="og:description" content="Cadastre sua caravana e garanta condições especiais.">
+    <meta property="og:description" content="Encontre uma caravana saindo da sua cidade ou cadastre a sua e reúna sua tripulação pra Zé Castanha.">
     <meta property="og:image" content="https://zecastanha.com/assets/preview.png">
-    
+    <meta property="og:url" content="https://zecastanha.com/caravanas">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../assets/favicon.png">
     <link rel="stylesheet" href="../style.css">
 
@@ -33,66 +38,204 @@
     'https://connect.facebook.net/en_US/fbevents.js');
     fbq('init', '9953934791370507');
     fbq('track', 'PageView');
-    fbq('track', 'Lead', { content_name: 'Cadastro de Caravana' });
     </script>
     <noscript><img height="1" width="1" style="display:none"
     src="https://www.facebook.com/tr?id=9953934791370507&ev=PageView&noscript=1"
     /></noscript>
     <!-- End Meta Pixel Code -->
-
-    <style>
-        body {
-            background: #030305;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            text-align: center;
-            font-family: var(--font-main);
-            margin: 0;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-        .redirect-box {
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(255, 193, 7, 0.3);
-            border-radius: 18px;
-            padding: 35px 25px;
-            max-width: 440px;
-            width: 100%;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(255, 193, 7, 0.15);
-        }
-        .redirect-title {
-            font-family: 'Star Jedi', sans-serif;
-            font-size: 1.6rem;
-            color: var(--gold);
-            margin: 0 0 10px;
-            text-transform: lowercase;
-            letter-spacing: 2px;
-        }
-        .redirect-desc {
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 25px;
-        }
-    </style>
 </head>
 <body>
     <canvas id="spaceCanvas"></canvas>
 
-    <div class="redirect-box" style="position: relative; z-index: 1;">
-        <h1 class="redirect-title">caravanas</h1>
-        <p class="redirect-desc">Redirecionando para o formulário oficial de caravanas...</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSevO3eFZ8BuqP5rvHi2KP-fSb5ORBJnpTXSrIoMIyMgh9Y9HA/viewform?usp=publish-editor" class="cta-btn cta-gold" style="width: 100%; box-sizing: border-box;">CADASTRAR CARAVANA</a>
+    <div class="promoters-page">
+        <!-- Nav Desktop -->
+        <nav class="premium-nav nav-desktop" style="position:relative; padding:25px 0;">
+            <a href="../" class="nav-btn" style="text-decoration:none;">INÍCIO</a>
+            <span class="nav-separator">|</span>
+            <a href="../promoters/" class="nav-btn" style="text-decoration:none;">PROMOTERS</a>
+            <span class="nav-separator">|</span>
+            <a href="./" class="nav-btn active" style="text-decoration:none;">CARAVANAS</a>
+            <span class="nav-separator">|</span>
+            <a href="../#vip" class="nav-btn" style="text-decoration:none;">GRUPO VIP</a>
+            <span class="nav-separator">|</span>
+            <a href="../lojinha/" class="nav-btn" style="text-decoration:none;">LOJINHA</a>
+            <span class="nav-separator">|</span>
+            <a href="../historia/" class="nav-btn" style="text-decoration:none;">HISTÓRIA</a>
+        </nav>
+
+        <!-- Hamburger (Mobile) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Mobile Menu Overlay -->
+        <div class="mobile-menu" id="mobileMenu">
+            <nav class="mobile-menu-nav">
+                <a href="../" class="mobile-menu-link">INÍCIO</a>
+                <a href="../promoters/" class="mobile-menu-link">PROMOTERS</a>
+                <a href="./" class="mobile-menu-link active">CARAVANAS</a>
+                <a href="../#vip" class="mobile-menu-link" onclick="closeMobileMenu()">GRUPO VIP</a>
+                <a href="../lojinha/" class="mobile-menu-link">LOJINHA</a>
+                <a href="../historia/" class="mobile-menu-link">HISTÓRIA</a>
+                <a href="../links/" class="mobile-menu-link">LINKS</a>
+            </nav>
+        </div>
+
+        <div class="promoters-hero">
+            <p class="section-tag">// ROTA INTERESTELAR</p>
+            <h1 class="section-title">reúna sua tripulação</h1>
+            <p class="section-body">Ache uma caravana saindo perto de você e embarque junto, ou cadastre a sua e leve sua galera pra Zé Castanha IX.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSevO3eFZ8BuqP5rvHi2KP-fSb5ORBJnpTXSrIoMIyMgh9Y9HA/viewform?usp=publish-editor" target="_blank" class="cta-btn cta-gold">CADASTRAR CARAVANA</a>
+        </div>
+
+        <!-- Busca e Filtro de Cidades -->
+        <div class="promoters-filter-wrap">
+            <div class="promoter-search-box">
+                <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="caravanSearch" class="promoter-search-input" placeholder="Buscar por Jaú..." autocomplete="off">
+            </div>
+            <div class="city-filter-chips" id="cityChips">
+                <button class="city-chip active" data-city="all">TODAS</button>
+                <button class="city-chip" data-city="jau">JAÚ</button>
+                <button class="city-chip" data-city="barra bonita">BARRA BONITA</button>
+                <button class="city-chip" data-city="botucatu">BOTUCATU</button>
+                <button class="city-chip" data-city="itapui">ITAPUÍ</button>
+                <button class="city-chip" data-city="pederneiras">PEDERNEIRAS</button>
+                <button class="city-chip" data-city="sao carlos">SÃO CARLOS</button>
+            </div>
+        </div>
+
+        <p id="caravanCount" class="section-tag" style="text-align:center; margin-bottom: 20px;"></p>
+
+        <div class="promoters-grid" id="caravansGrid"></div>
+
+        <div class="promoters-footer">
+            <p class="section-body">Não achou sua cidade na lista?</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSevO3eFZ8BuqP5rvHi2KP-fSb5ORBJnpTXSrIoMIyMgh9Y9HA/viewform?usp=publish-editor" target="_blank" class="cta-btn cta-outline">CADASTRAR MINHA CARAVANA</a>
+        </div>
     </div>
 
     <script src="../script.js"></script>
     <script>
-        setTimeout(() => {
-            window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSevO3eFZ8BuqP5rvHi2KP-fSb5ORBJnpTXSrIoMIyMgh9Y9HA/viewform?usp=publish-editor";
-        }, 800);
+        // Dados extraídos do formulário oficial de cadastro de caravanas.
+        // Cada responsável aparece uma única vez (mantida a atualização mais recente
+        // quando houve mais de um cadastro da mesma pessoa/telefone).
+        var CARAVANS = [
+            { city: "Agudos e Lençóis", name: "Jonatas William da Silva Santos", phone: "5514991738482" },
+            { city: "Iacanga, Arealva e Jacuba", name: "Grazi Oliveira", phone: "5514998357387" },
+            { city: "Lençóis Paulista e Macatuba", name: "Bruno Alves", phone: "5514997369858" },
+            { city: "Jaú, Itapuí e Pederneiras", name: "Luna Gabriela Russomano", phone: "5514981831639" },
+            { city: "Botucatu", name: "Stephanie Carolina de Souza Pereira", phone: "5512981023370" },
+            { city: "Barra Bonita e Igaraçu do Tietê", name: "Izabelle Araújo", phone: "5514996736985" },
+            { city: "Barra Bonita", name: "Pedro Henrique Ferreira Bigotto", phone: "5514991625974" },
+            { city: "Barra Bonita", name: "Jhaddy Karolinne", phone: "5514991576865" },
+            { city: "Botucatu e São Manuel", name: "Mary Moraes", phone: "5514997183969" },
+            { city: "Barra Bonita", name: "Alice Fregonesi", phone: "5514991204975" },
+            { city: "Ibitinga", name: "Gustavo Henrique dos Santos", phone: "5516996252418" },
+            { city: "Bariri, Boraceia e Pederneiras", name: "Jhonatan dos Santos", phone: "5514981611575" },
+            { city: "Itapuí", name: "Livia Cabral", phone: "5514991548851" },
+            { city: "Santa Cruz do Rio Pardo", name: "Lucas Daniel Dionizio", phone: "5514996834376" },
+            { city: "Botucatu, São Manuel e Pratânia", name: "Gabriela Bastos", phone: "5514998126327" },
+            { city: "Jaú", name: "Ketlin Jahn Leandro", phone: "5514991787596" },
+            { city: "Jaú", name: "Lerinalva Edileuza da Silva", phone: "5514982126585" },
+            { city: "Botucatu, São Manuel, Areópolis e Lençóis Paulista", name: "Hiago Felipe", phone: "5514997727274" },
+            { city: "Reginópolis", name: "Julia Pereira Vieira", phone: "5514997100178" },
+            { city: "Jaú", name: "Gabriel dos Santos", phone: "5514996604225" },
+            { city: "Pederneiras", name: "Ray Miller Soares Pereira", phone: "5514991378469" },
+            { city: "Barra Bonita e Igaraçu do Tietê", name: "Marcos Roberto Gomes Silva", phone: "5514996755918" },
+            { city: "Dois Córregos, Mineiros do Tietê e Jaú", name: "Marina de Aguiar", phone: "5514981531017" },
+            { city: "São Carlos e Araraquara", name: "Eduardo Silva", phone: "5516994430140" },
+            { city: "Ibitinga", name: "Thamiris Messias Marinheiro", phone: "5516991679124" },
+            { city: "Jaú", name: "João Vitor Mendes da Silva", phone: "5514996649047" },
+            { city: "Bocaina e Jaú", name: "Luís Carlos da Silva Alves Junior", phone: "5514991976121" },
+            { city: "Promissão, Lins, Cafelândia e Pirajuí", name: "Nara Eduarda", phone: "5514997117780" },
+            { city: "Itapuí", name: "Livia Ferraz Alves de Souza", phone: "5514998775105" },
+            { city: "Jaú e Itapuí", name: "Fabricio Souza Rodrigues", phone: "5514996895439" },
+            { city: "Itapuí e Jaú", name: "Isabelle Rosalin dos Santos", phone: "5514996513626" },
+            { city: "Brotas e Torrinha", name: "Aline Gabrieli da Silva Vigarani", phone: "5514996094178" },
+            { city: "Guaimbé", name: "Breno Abrahão da Silva", phone: "5514996582679" },
+            { city: "São Carlos", name: "Bruna Vitória Ferreira Fernandes", phone: "5519971477727" },
+            { city: "Lins", name: "Allisson Echeto", phone: "5514996176710" },
+            { city: "Jaú", name: "Tamires Aparecida", phone: "5514998701729" },
+            { city: "Igaraçu do Tietê", name: "Letícia Cristina Sartorelli", phone: "5514998088061" },
+            { city: "Jaú", name: "Giselly Sturaro", phone: "5514998098827" }
+        ];
+
+        function normalizeText(str) {
+            return (str || '').normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim();
+        }
+
+        var grid = document.getElementById('caravansGrid');
+        var countEl = document.getElementById('caravanCount');
+
+        CARAVANS.sort(function(a, b) { return a.city.localeCompare(b.city, 'pt-BR'); });
+
+        CARAVANS.forEach(function(c) {
+            var card = document.createElement('div');
+            card.className = 'promoter-card';
+
+            var msg = encodeURIComponent('Oi! Vi sua caravana pra Zé Castanha e quero embarcar também 🚀');
+
+            card.innerHTML =
+                '<div class="promoter-info">' +
+                    '<h3 class="promoter-name">' + c.city + '</h3>' +
+                    '<p class="promoter-city">&#128100; ' + c.name + '</p>' +
+                '</div>' +
+                '<a href="https://wa.me/' + c.phone + '?text=' + msg + '" target="_blank" class="promoter-btn">FALAR NO WHATSAPP</a>';
+
+            grid.appendChild(card);
+        });
+
+        if (countEl) {
+            countEl.textContent = CARAVANS.length + ' CARAVANAS CADASTRADAS';
+        }
+
+        // Busca e Filtro
+        (function() {
+            var searchInput = document.getElementById('caravanSearch');
+            var chips = document.querySelectorAll('.city-chip');
+            var cards = document.querySelectorAll('.promoter-card');
+            var selectedCity = 'all';
+
+            function filterCaravans() {
+                var query = normalizeText(searchInput ? searchInput.value : '');
+                var visible = 0;
+
+                cards.forEach(function(card) {
+                    var city = normalizeText(card.querySelector('.promoter-name') ? card.querySelector('.promoter-name').textContent : '');
+                    var name = normalizeText(card.querySelector('.promoter-city') ? card.querySelector('.promoter-city').textContent : '');
+
+                    var matchesCity = (selectedCity === 'all') || city.includes(selectedCity);
+                    var matchesQuery = !query || city.includes(query) || name.includes(query);
+
+                    if (matchesCity && matchesQuery) {
+                        card.classList.remove('hidden-filter');
+                        visible++;
+                    } else {
+                        card.classList.add('hidden-filter');
+                    }
+                });
+
+                if (countEl) {
+                    countEl.textContent = visible + (visible === 1 ? ' CARAVANA ENCONTRADA' : ' CARAVANAS ENCONTRADAS');
+                }
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener('input', filterCaravans);
+            }
+
+            chips.forEach(function(chip) {
+                chip.addEventListener('click', function() {
+                    chips.forEach(function(c) { c.classList.remove('active'); });
+                    chip.classList.add('active');
+                    selectedCity = normalizeText(chip.getAttribute('data-city'));
+                    filterCaravans();
+                });
+            });
+        })();
     </script>
 </body>
 </html>
