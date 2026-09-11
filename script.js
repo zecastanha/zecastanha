@@ -183,6 +183,18 @@ if (countdownEl) {
     setInterval(updateCountdown, 1000);
 }
 
+// --- CTA FIXO (aparece depois que rola a hero) ---
+const stickyCta = document.getElementById('stickyCta');
+if (stickyCta) {
+    const heroSection = document.querySelector('.hero-section');
+    const toggleSticky = () => {
+        const threshold = heroSection ? heroSection.offsetHeight - 100 : 400;
+        stickyCta.classList.toggle('visible', window.scrollY > threshold);
+    };
+    window.addEventListener('scroll', toggleSticky, { passive: true });
+    toggleSticky();
+}
+
 // --- EVENT TRACKING (Meta Pixel & Google Analytics) ---
 document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
